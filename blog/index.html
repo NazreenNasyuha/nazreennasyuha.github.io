@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./style.css" />
 </head>
-<body>
+<body data-theme="dark">
   <header class="nav">
     <div class="nav-inner container">
 
@@ -25,9 +25,15 @@
         <a href="./index.html#achievements">Achievements</a>
         <a href="./index.html#contact" class="nav-cta">Contact</a>
       </nav>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark / light theme" title="Toggle theme">
+          <span class="theme-icon theme-sun">☀️</span>
+          <span class="theme-icon theme-moon">🌙</span>
+        </button>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -59,6 +65,16 @@
           <span class="chip">research</span></div>
           <a class="read-more" href="posts/from-field-recordings-to-soil-model.html">Read post →</a>
         </article>
+        <article class="blog-card">
+          <span class="blog-date">8 August 2026</span>
+          <h3><a href="posts/two-internships-two-sides-of-construction.html">Two internships, two very different sides of construction</a></h3>
+          <p>Before I finished my degree, I did two internships that could not have been more different — and together they taught me more about how the industry actually works than any classroom ever could.</p>
+          <div class="project-tags"><span class="chip">internship</span>
+          <span class="chip">construction</span>
+          <span class="chip">autocad</span>
+          <span class="chip">site-work</span></div>
+          <a class="read-more" href="posts/two-internships-two-sides-of-construction.html">Read post →</a>
+        </article>
       </div>
     </div>
   </main>
@@ -74,21 +90,46 @@
       </div>
     </div>
   </footer>
+  <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
   <script>
     (function () {
       "use strict";
-      const t = document.getElementById("navToggle");
-      const l = document.getElementById("navLinks");
-      if (t && l) {
+      /* theme */
+      var root = document.documentElement;
+      var t = document.getElementById("themeToggle");
+      var saved = "dark";
+      try { saved = localStorage.getItem("nz-theme") || "dark"; } catch (e) {}
+      root.setAttribute("data-theme", saved);
+      if (t) {
         t.addEventListener("click", function () {
-          t.classList.toggle("open");
+          var next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+          root.setAttribute("data-theme", next);
+          try { localStorage.setItem("nz-theme", next); } catch (e) {}
+        });
+      }
+      /* nav toggle */
+      var nt = document.getElementById("navToggle");
+      var l = document.getElementById("navLinks");
+      if (nt && l) {
+        nt.addEventListener("click", function () {
+          nt.classList.toggle("open");
           l.classList.toggle("open");
         });
         l.querySelectorAll("a").forEach(function (a) {
           a.addEventListener("click", function () {
-            t.classList.remove("open");
+            nt.classList.remove("open");
             l.classList.remove("open");
           });
+        });
+      }
+      /* back to top */
+      var top = document.getElementById("toTop");
+      if (top) {
+        window.addEventListener("scroll", function () {
+          top.classList.toggle("visible", window.scrollY > 480);
+        }, { passive: true });
+        top.addEventListener("click", function () {
+          window.scrollTo({ top: 0, behavior: "smooth" });
         });
       }
       document.querySelectorAll(".year-js").forEach(function (el) {

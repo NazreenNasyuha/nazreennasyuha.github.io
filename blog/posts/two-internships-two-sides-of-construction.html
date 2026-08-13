@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Building HVSR Analyzer: a zero-dependency desktop app — a post by Nazreen Razmi" />
-  <title>Building HVSR Analyzer: a zero-dependency desktop app — Nazreen Razmi</title>
+  <meta name="description" content="Two internships, two very different sides of construction — a post by Nazreen Razmi" />
+  <title>Two internships, two very different sides of construction — Nazreen Razmi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -40,60 +40,62 @@
   <main class="blog-post-page">
     <div class="container">
       <header class="post-header">
-        <span class="post-date">13 August 2026</span>
-        <h1>Building HVSR Analyzer: a zero-dependency desktop app</h1>
+        <span class="post-date">8 August 2026</span>
+        <h1>Two internships, two very different sides of construction</h1>
         <p class="post-meta">
-          Tags: python, hvsr, desktop, automation
+          Tags: internship, construction, autocad, site-work
         </p>
       </header>
       <article class="post-body">
-<p>My final year project taught me that the hardest part of seismic site characterization isn't the theory — it's the tooling. Geopsy, EasyHVSR, and Dinver are powerful, but getting a non-expert (or a fresh intern) from raw microtremor recordings to a reliable H/V curve is a steep climb: install Python, install packages, learn the CLI, fight version conflicts.</p>
-<p>So I rebuilt the whole workflow as <strong>HVSR Analyzer</strong> — a desktop app that "just runs."</p>
-<h2>The idea</h2>
-<p>The goal was simple: drop your field recordings on the window, get your H/V spectral ratio curve, a SESAME 2004 reliability check, and — optionally — a 1D inversion into a layered soil model with Vs, Vs30, and soil class.</p>
-<p>The constraint that made it interesting: <strong>zero third-party packages</strong>. No numpy, no scipy, no obspy, no matplotlib. Everything on the Python standard library.</p>
-<h2>Why zero dependencies?</h2>
-<p>Three reasons:</p>
+<p>Before I finished my degree, I did two internships that could not have been more different — and together they taught me more about how the industry actually works than any classroom ever could.</p>
+<h2>The design office: Jurutera JRK</h2>
+<p>My first internship was as an <strong>Assistant Engineer</strong> at a consultancy. This was the world of drawings, calculations, and meetings — the clean side of construction.</p>
+<p>What I actually did:</p>
+<ul>
+<li>prepared technical drawings — road signage layouts, building plans — in</li>
+</ul>
+<p>  <strong>AutoCAD</strong></p>
+<ul>
+<li>assisted with basic <strong>drainage design</strong> and engineering calculations</li>
+<li>went on site visits to collect data and verify that designs matched</li>
+</ul>
+<p>  reality</p>
+<ul>
+<li>coordinated with senior engineers to review and finalize drawings</li>
+<li>compiled approved drawings into formal documentation and submission</li>
+</ul>
+<p>  reports</p>
+<p>The biggest lesson here wasn't technical. It was that <strong>design is a collaborative, iterative process</strong>. A drawing goes through review after review. Learning to take feedback on your work — and to communicate clearly with engineers above and below you — is half the job.</p>
+<h2>The site: Haily Construction</h2>
+<p>My second internship put me on the other side of the fence entirely, as a <strong>Site Supervisor</strong>. Same industry, completely different world: boots, safety vests, and the sound of machinery.</p>
+<p>What I actually did:</p>
+<ul>
+<li>supervised daily site operations, making sure work followed the schedule</li>
+</ul>
+<p>  and specifications</p>
+<ul>
+<li>monitored worker performance and coordinated site activities to keep the</li>
+</ul>
+<p>  workflow moving</p>
+<ul>
+<li>conducted <strong>concrete cube testing</strong> to verify strength and quality</li>
+<li>supported project scheduling and tracked task progress</li>
+<li>managed machinery permit applications and coordinated material purchasing</li>
+</ul>
+<p>  and delivery</p>
+<p>Site work taught me that <strong>a good design is only as good as its execution</strong>. The people pouring concrete, tying rebar, and operating machinery are the ones who make it real — and respecting their craft makes you a better engineer.</p>
+<h2>What the two worlds share</h2>
+<p>Design office or construction site, the same fundamentals matter:</p>
 <ol>
-<li><strong>No setup for users.</strong> No Python install, no <code>pip install</code>, no dependency</li>
+<li><strong>Communication.</strong> Whether it's a drawing comment or a morning briefing,</li>
 </ol>
-<p>   hell. Download the installer, run it, done.</p>
+<p>   clarity prevents costly mistakes.</p>
 <ol>
-<li><strong>Reproducibility.</strong> The build is deterministic — the same code always</li>
+<li><strong>Schedules.</strong> Time is money — on a drawing board and on a crane.</li>
+<li><strong>Quality.</strong> It's a cube test on site, a revision check in the office,</li>
 </ol>
-<p>   produces the same app, on any machine.</p>
-<ol>
-<li><strong>It's a great learning exercise.</strong> When you can't lean on numpy, you</li>
-</ol>
-<p>   actually understand the FFT, the windowing, and the smoothing you're    implementing.</p>
-<h2>What it does</h2>
-<ul>
-<li>Reads many field file formats (including three-component files, <code>.eqd</code>/</li>
-</ul>
-<p>  <code>.sg2</code>, 3-column files, and <code>.pz</code> response files)</p>
-<ul>
-<li>Drag & drop a folder to batch-process</li>
-<li>Checks reliability against <strong>SESAME 2004</strong> guidelines, plus Japan,</li>
-</ul>
-<p>  Indonesia (SNI 1726-2019), USGS, and a generic checklist</p>
-<ul>
-<li>Inverts the H/V curve into a layered model — depth, Vs, Vs30, NEHRP/SNI</li>
-</ul>
-<p>  soil class</p>
-<ul>
-<li>Ships with a dark theme for field use and a black & white "thesis" theme</li>
-</ul>
-<p>  for printing</p>
-<h2>Lessons learned</h2>
-<ul>
-<li>The standard library is more capable than people give it credit for.</li>
-<li>A GUI doesn't need to be complicated — the whole app ships as a per-user</li>
-</ul>
-<p>  installer with its own private Python runtime.</p>
-<ul>
-<li>Tools for engineers should hide complexity, not celebrate it.</li>
-</ul>
-<p>If you're doing microtremor work and want to skip the setup dance, grab the installer from the <a href="https://github.com/NazreenNasyuha/HVSR_Analyzer/releases">releases page</a> — or browse the source on <a href="https://github.com/NazreenNasyuha/HVSR_Analyzer">GitHub</a>.</p>
+<p>   but the goal is identical: build it right.</p>
+<p>If you're a student deciding between consultancy and contracting for your internship, my advice: <strong>do both if you can.</strong> The design office teaches you how things should be built. The site teaches you how they actually get built. You need both perspectives to be a complete engineer.</p>
       </article>
       <div class="post-footer-links">
         <a href="index.html">← Back to blog</a>

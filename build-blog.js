@@ -8,7 +8,10 @@
      date: YYYY-MM-DD
      tags: [tag1, tag2]
      ---
-   Output: blog/index.html (listing) + blog/posts/<slug>.html
+   Output:
+     - blog/index.html (listing)
+     - blog/posts/<slug>.html (each post)
+     - homepage teaser in index.html (between BLOG-TEASER markers)
    ============================================================ */
 "use strict";
 
@@ -18,6 +21,8 @@ const path = require("path");
 const ROOT = __dirname;
 const POSTS_DIR = path.join(ROOT, "blog", "posts");
 const BLOG_DIR = path.join(ROOT, "blog");
+const INDEX_FILE = path.join(ROOT, "index.html");
+const TEASER_COUNT = 3;
 
 /* ---------------- Markdown helpers ---------------- */
 
@@ -205,6 +210,15 @@ function parsePost(file) {
   return { slug, ...meta, body };
 }
 
+function formatDate(dateStr) {
+  if (!dateStr) return "";
+  return new Date(dateStr + "T00:00:00").toLocaleDateString("en-GB", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
 /* ---------------- Page shell ---------------- */
 
 function navHtml(prefix) {
@@ -223,7 +237,6 @@ function navHtml(prefix) {
 }
 
 function pageShell(prefix, title, body, opts = {}) {
-  const { isPost = false, postUrl = "" } = opts;
   const desc = opts.desc || "Muhammad Nazreen Nasyuha bin Razmi — Civil Engineering graduate specializing in seismic site characterization and engineering automation.";
   return `<!DOCTYPE html>
 <html lang="en">
@@ -237,13 +250,19 @@ function pageShell(prefix, title, body, opts = {}) {
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="${prefix}style.css" />
 </head>
-<body>
+<body data-theme="dark">
   <header class="nav">
     <div class="nav-inner container">
 ${navHtml(prefix)}
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark / light theme" title="Toggle theme">
+          <span class="theme-icon theme-sun">☀️</span>
+          <span class="theme-icon theme-moon">🌙</span>
+        </button>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 ${body}
@@ -259,21 +278,46 @@ ${body}
       </div>
     </div>
   </footer>
+  <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
   <script>
     (function () {
       "use strict";
-      const t = document.getElementById("navToggle");
-      const l = document.getElementById("navLinks");
-      if (t && l) {
+      /* theme */
+      var root = document.documentElement;
+      var t = document.getElementById("themeToggle");
+      var saved = "dark";
+      try { saved = localStorage.getItem("nz-theme") || "dark"; } catch (e) {}
+      root.setAttribute("data-theme", saved);
+      if (t) {
         t.addEventListener("click", function () {
-          t.classList.toggle("open");
+          var next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+          root.setAttribute("data-theme", next);
+          try { localStorage.setItem("nz-theme", next); } catch (e) {}
+        });
+      }
+      /* nav toggle */
+      var nt = document.getElementById("navToggle");
+      var l = document.getElementById("navLinks");
+      if (nt && l) {
+        nt.addEventListener("click", function () {
+          nt.classList.toggle("open");
           l.classList.toggle("open");
         });
         l.querySelectorAll("a").forEach(function (a) {
           a.addEventListener("click", function () {
-            t.classList.remove("open");
+            nt.classList.remove("open");
             l.classList.remove("open");
           });
+        });
+      }
+      /* back to top */
+      var top = document.getElementById("toTop");
+      if (top) {
+        window.addEventListener("scroll", function () {
+          top.classList.toggle("visible", window.scrollY > 480);
+        }, { passive: true });
+        top.addEventListener("click", function () {
+          window.scrollTo({ top: 0, behavior: "smooth" });
         });
       }
       document.querySelectorAll(".year-js").forEach(function (el) {
@@ -310,10 +354,7 @@ function main() {
   // ---- Individual post pages ----
   posts.forEach((post) => {
     const html = renderMarkdown(post.body);
-    const dateStr = post.date
-      ? new Date(post.date + "T00:00:00").toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" })
-      : "";
-    const tags = post.tags.map((t) => `<span class="chip">${escapeHtml(t)}</span>`).join("\n            ");
+    const dateStr = formatDate(post.date);
     const body = `
   <main class="blog-post-page">
     <div class="container">
@@ -342,10 +383,7 @@ ${html}
   // ---- Blog index ----
   const cards = posts
     .map((post) => {
-      const dateStr = post.date
-        ? new Date(post.date + "T00:00:00").toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" })
-        : "";
-      // first paragraph as excerpt
+      const dateStr = formatDate(post.date);
       const firstPara = /<p>([\s\S]*?)<\/p>/.exec(renderMarkdown(post.body));
       const excerpt = firstPara ? firstPara[1].replace(/<[^>]+>/g, "") : "";
       const tags = post.tags.map((t) => `<span class="chip">${escapeHtml(t)}</span>`).join("\n          ");
@@ -377,6 +415,46 @@ ${cards}
     desc: "Blog — notes on seismic site characterization, engineering automation, and tools by Nazreen Razmi.",
   }));
   console.log("  ✓ blog/index.html");
+
+  // ---- Homepage teaser ----
+  const teaserCards = posts
+    .slice(0, TEASER_COUNT)
+    .map((post) => {
+      const dateStr = formatDate(post.date);
+      const firstPara = /<p>([\s\S]*?)<\/p>/.exec(renderMarkdown(post.body));
+      const excerpt = firstPara ? firstPara[1].replace(/<[^>]+>/g, "") : "";
+      const tags = post.tags.map((t) => `<span class="chip">${escapeHtml(t)}</span>`).join("\n            ");
+      return `        <article class="blog-card reveal visible">
+          <span class="blog-date">${dateStr}</span>
+          <h3><a href="blog/posts/${post.slug}.html">${escapeHtml(post.title)}</a></h3>
+          <p>${escapeHtml(excerpt)}</p>
+          <div class="project-tags">${tags}</div>
+          <a class="read-more" href="blog/posts/${post.slug}.html">Read post →</a>
+        </article>`;
+    })
+    .join("\n");
+
+  const teaserHtml = `<div class="blog-grid" id="blogTeaser">
+${teaserCards}
+      </div>`;
+
+  if (fs.existsSync(INDEX_FILE)) {
+    let index = fs.readFileSync(INDEX_FILE, "utf8");
+    const startMarker = "<!-- BLOG-TEASER-START -->";
+    const endMarker = "<!-- BLOG-TEASER-END -->";
+    const startIdx = index.indexOf(startMarker);
+    const endIdx = index.indexOf(endMarker);
+    if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
+      const before = index.slice(0, startIdx + startMarker.length);
+      const after = index.slice(endIdx);
+      index = before + "\n" + teaserHtml + "\n" + after;
+      fs.writeFileSync(INDEX_FILE, index);
+      console.log(`  ✓ index.html teaser (${Math.min(posts.length, TEASER_COUNT)} latest post(s))`);
+    } else {
+      console.warn("  ! index.html BLOG-TEASER markers not found — teaser skipped.");
+    }
+  }
+
   console.log(`\nDone. Built ${posts.length} post(s).`);
 }
 
