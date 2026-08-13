@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Blog — notes on seismic site characterization, engineering automation, and tools by Nazreen Razmi." />
+  <title>Blog — Nazreen Razmi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner container">
+
+      <a href="./index.html" class="logo">NR<span class="logo-dot">.</span></a>
+      <nav class="nav-links" id="navLinks">
+        <a href="./index.html#about">About</a>
+        <a href="./index.html#education">Education</a>
+        <a href="./index.html#experience">Experience</a>
+        <a href="./index.html#skills">Skills</a>
+        <a href="./index.html#projects">Projects</a>
+        <a href="./blog/index.html">Blog</a>
+        <a href="./index.html#achievements">Achievements</a>
+        <a href="./index.html#contact" class="nav-cta">Contact</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="section" style="padding-top: calc(var(--nav-h) + 48px);">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">Blog</span>
+        <h2>Notes from the field</h2>
+        <p class="section-sub">Writing about seismic site characterization, engineering automation, and the tools I build along the way.</p>
+      </div>
+      <div class="blog-grid">
+        <article class="blog-card">
+          <span class="blog-date">13 August 2026</span>
+          <h3><a href="posts/building-hvsr-analyzer.html">Building HVSR Analyzer: a zero-dependency desktop app</a></h3>
+          <p>My final year project taught me that the hardest part of seismic site characterization isn't the theory — it's the tooling. Geopsy, EasyHVSR, and Dinver are powerful, but getting a non-expert (or a fresh intern) from raw microtremor recordings to a reliable H/V curve is a steep climb: install Python, install packages, learn the CLI, fight version conflicts.</p>
+          <div class="project-tags"><span class="chip">python</span>
+          <span class="chip">hvsr</span>
+          <span class="chip">desktop</span>
+          <span class="chip">automation</span></div>
+          <a class="read-more" href="posts/building-hvsr-analyzer.html">Read post →</a>
+        </article>
+        <article class="blog-card">
+          <span class="blog-date">10 August 2026</span>
+          <h3><a href="posts/from-field-recordings-to-soil-model.html">From field recordings to a soil model: my microzonation FYP journey</a></h3>
+          <p>For my final year project I worked on seismic microzonation mapping — the process of dividing a region into zones that respond differently to earthquake ground motion, based on local soil conditions. (The project location is omitted here in compliance with a Non-Disclosure Agreement.)</p>
+          <div class="project-tags"><span class="chip">fyp</span>
+          <span class="chip">microzonation</span>
+          <span class="chip">hvsr</span>
+          <span class="chip">research</span></div>
+          <a class="read-more" href="posts/from-field-recordings-to-soil-model.html">Read post →</a>
+        </article>
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© <span class="year-js">2026</span> Muhammad Nazreen Nasyuha bin Razmi. Built with ❤️ and a lot of Python.</p>
+      <div class="footer-links">
+        <a href="mailto:nazreennasyuha@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/nazreenrazmi/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/NazreenNasyuha" target="_blank" rel="noopener">GitHub</a>
+        <a href="./blog/index.html">Blog</a>
+        <a href="./index.html">Home</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      "use strict";
+      const t = document.getElementById("navToggle");
+      const l = document.getElementById("navLinks");
+      if (t && l) {
+        t.addEventListener("click", function () {
+          t.classList.toggle("open");
+          l.classList.toggle("open");
+        });
+        l.querySelectorAll("a").forEach(function (a) {
+          a.addEventListener("click", function () {
+            t.classList.remove("open");
+            l.classList.remove("open");
+          });
+        });
+      }
+      document.querySelectorAll(".year-js").forEach(function (el) {
+        el.textContent = new Date().getFullYear();
+      });
+    })();
+  </script>
+</body>
+</html>

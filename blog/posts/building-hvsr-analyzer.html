@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Building HVSR Analyzer: a zero-dependency desktop app — a post by Nazreen Razmi" />
+  <title>Building HVSR Analyzer: a zero-dependency desktop app — Nazreen Razmi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner container">
+
+      <a href="../index.html" class="logo">NR<span class="logo-dot">.</span></a>
+      <nav class="nav-links" id="navLinks">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#education">Education</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#skills">Skills</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../blog/index.html">Blog</a>
+        <a href="../index.html#achievements">Achievements</a>
+        <a href="../index.html#contact" class="nav-cta">Contact</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="blog-post-page">
+    <div class="container">
+      <header class="post-header">
+        <span class="post-date">13 August 2026</span>
+        <h1>Building HVSR Analyzer: a zero-dependency desktop app</h1>
+        <p class="post-meta">
+          Tags: python, hvsr, desktop, automation
+        </p>
+      </header>
+      <article class="post-body">
+<p>My final year project taught me that the hardest part of seismic site characterization isn't the theory — it's the tooling. Geopsy, EasyHVSR, and Dinver are powerful, but getting a non-expert (or a fresh intern) from raw microtremor recordings to a reliable H/V curve is a steep climb: install Python, install packages, learn the CLI, fight version conflicts.</p>
+<p>So I rebuilt the whole workflow as <strong>HVSR Analyzer</strong> — a desktop app that "just runs."</p>
+<h2>The idea</h2>
+<p>The goal was simple: drop your field recordings on the window, get your H/V spectral ratio curve, a SESAME 2004 reliability check, and — optionally — a 1D inversion into a layered soil model with Vs, Vs30, and soil class.</p>
+<p>The constraint that made it interesting: <strong>zero third-party packages</strong>. No numpy, no scipy, no obspy, no matplotlib. Everything on the Python standard library.</p>
+<h2>Why zero dependencies?</h2>
+<p>Three reasons:</p>
+<ol>
+<li><strong>No setup for users.</strong> No Python install, no <code>pip install</code>, no dependency</li>
+</ol>
+<p>   hell. Download the installer, run it, done.</p>
+<ol>
+<li><strong>Reproducibility.</strong> The build is deterministic — the same code always</li>
+</ol>
+<p>   produces the same app, on any machine.</p>
+<ol>
+<li><strong>It's a great learning exercise.</strong> When you can't lean on numpy, you</li>
+</ol>
+<p>   actually understand the FFT, the windowing, and the smoothing you're    implementing.</p>
+<h2>What it does</h2>
+<ul>
+<li>Reads many field file formats (including three-component files, <code>.eqd</code>/</li>
+</ul>
+<p>  <code>.sg2</code>, 3-column files, and <code>.pz</code> response files)</p>
+<ul>
+<li>Drag & drop a folder to batch-process</li>
+<li>Checks reliability against <strong>SESAME 2004</strong> guidelines, plus Japan,</li>
+</ul>
+<p>  Indonesia (SNI 1726-2019), USGS, and a generic checklist</p>
+<ul>
+<li>Inverts the H/V curve into a layered model — depth, Vs, Vs30, NEHRP/SNI</li>
+</ul>
+<p>  soil class</p>
+<ul>
+<li>Ships with a dark theme for field use and a black & white "thesis" theme</li>
+</ul>
+<p>  for printing</p>
+<h2>Lessons learned</h2>
+<ul>
+<li>The standard library is more capable than people give it credit for.</li>
+<li>A GUI doesn't need to be complicated — the whole app ships as a per-user</li>
+</ul>
+<p>  installer with its own private Python runtime.</p>
+<ul>
+<li>Tools for engineers should hide complexity, not celebrate it.</li>
+</ul>
+<p>If you're doing microtremor work and want to skip the setup dance, grab the installer from the <a href="https://github.com/NazreenNasyuha/HVSR_Analyzer/releases">releases page</a> — or browse the source on <a href="https://github.com/NazreenNasyuha/HVSR_Analyzer">GitHub</a>.</p>
+      </article>
+      <div class="post-footer-links">
+        <a href="index.html">← Back to blog</a>
+        <a href="../index.html">← Home</a>
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© <span class="year-js">2026</span> Muhammad Nazreen Nasyuha bin Razmi. Built with ❤️ and a lot of Python.</p>
+      <div class="footer-links">
+        <a href="mailto:nazreennasyuha@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/nazreenrazmi/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/NazreenNasyuha" target="_blank" rel="noopener">GitHub</a>
+        <a href="../blog/index.html">Blog</a>
+        <a href="../index.html">Home</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      "use strict";
+      const t = document.getElementById("navToggle");
+      const l = document.getElementById("navLinks");
+      if (t && l) {
+        t.addEventListener("click", function () {
+          t.classList.toggle("open");
+          l.classList.toggle("open");
+        });
+        l.querySelectorAll("a").forEach(function (a) {
+          a.addEventListener("click", function () {
+            t.classList.remove("open");
+            l.classList.remove("open");
+          });
+        });
+      }
+      document.querySelectorAll(".year-js").forEach(function (el) {
+        el.textContent = new Date().getFullYear();
+      });
+    })();
+  </script>
+</body>
+</html>

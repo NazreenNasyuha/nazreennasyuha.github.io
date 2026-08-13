@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="From field recordings to a soil model: my microzonation FYP journey — a post by Nazreen Razmi" />
+  <title>From field recordings to a soil model: my microzonation FYP journey — Nazreen Razmi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner container">
+
+      <a href="../index.html" class="logo">NR<span class="logo-dot">.</span></a>
+      <nav class="nav-links" id="navLinks">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#education">Education</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#skills">Skills</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../blog/index.html">Blog</a>
+        <a href="../index.html#achievements">Achievements</a>
+        <a href="../index.html#contact" class="nav-cta">Contact</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="blog-post-page">
+    <div class="container">
+      <header class="post-header">
+        <span class="post-date">10 August 2026</span>
+        <h1>From field recordings to a soil model: my microzonation FYP journey</h1>
+        <p class="post-meta">
+          Tags: fyp, microzonation, hvsr, research
+        </p>
+      </header>
+      <article class="post-body">
+<p>For my final year project I worked on <strong>seismic microzonation mapping</strong> — the process of dividing a region into zones that respond differently to earthquake ground motion, based on local soil conditions. (The project location is omitted here in compliance with a Non-Disclosure Agreement.)</p>
+<p>This post is about the pipeline, the tools, and the things that went wrong along the way.</p>
+<h2>The method: ambient noise and HVSR</h2>
+<p>Instead of waiting for earthquakes, we used <strong>ambient noise recordings</strong> — the ever-present microtremors of the ground. The <strong>Horizontal-to-Vertical Spectral Ratio (HVSR)</strong> method compares horizontal to vertical ground motion in the frequency domain.</p>
+<p>Where the H/V curve peaks, there's usually a strong impedance contrast below the site — the boundary between softer surface soils and stiffer deeper material. The peak frequency and amplitude tell you about the depth and stiffness of the layers.</p>
+<h2>The toolchain</h2>
+<ul>
+<li><strong>Geopsy</strong> — the workhorse for HVSR processing</li>
+<li><strong>EasyHVSR</strong> — fast, user-friendly HVSR computation</li>
+<li><strong>Dinver</strong> — for inverting the H/V curve into a 1D soil model</li>
+<li><strong>hvsrpy</strong> — Python library for programmatic analysis and comparison</li>
+</ul>
+<p>Learning to troubleshoot these tools took longer than learning the theory. Every one of them has quirks: file format expectations, window selection parameters, smoothing settings. Getting consistent results across tools became a mini-project in itself.</p>
+<h2>Automating the grind</h2>
+<p>The repetitive part of the research was the sheer volume of recordings to process and check. I wrote Python scripts to:</p>
+<ul>
+<li>batch-rename and organize field recordings</li>
+<li>run consistency checks across processing parameters</li>
+<li>generate reports and checklists from the results</li>
+</ul>
+<p>That automation instinct — turning a one-by-one manual workflow into a repeatable script — is what later grew into the <a href="https://github.com/NazreenNasyuha/HVSR_Analyzer">HVSR Analyzer</a> desktop app.</p>
+<h2>Takeaways</h2>
+<ol>
+<li><strong>Field data is messy.</strong> Processing real recordings means handling</li>
+</ol>
+<p>   noise, instrument response, and the occasional bad file.</p>
+<ol>
+<li><strong>Cross-validate everything.</strong> If two tools disagree, find out why —</li>
+</ol>
+<p>   usually it's a settings difference, not a bug.</p>
+<ol>
+<li><strong>Automate early.</strong> The time you spend writing the script is paid back</li>
+</ol>
+<p>   tenfold the first time you re-run the whole dataset.</p>
+<p>If you're starting a microzonation project, my advice: get your processing pipeline scripted before you're knee-deep in recordings. Future you will thank you.</p>
+      </article>
+      <div class="post-footer-links">
+        <a href="index.html">← Back to blog</a>
+        <a href="../index.html">← Home</a>
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© <span class="year-js">2026</span> Muhammad Nazreen Nasyuha bin Razmi. Built with ❤️ and a lot of Python.</p>
+      <div class="footer-links">
+        <a href="mailto:nazreennasyuha@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/nazreenrazmi/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/NazreenNasyuha" target="_blank" rel="noopener">GitHub</a>
+        <a href="../blog/index.html">Blog</a>
+        <a href="../index.html">Home</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      "use strict";
+      const t = document.getElementById("navToggle");
+      const l = document.getElementById("navLinks");
+      if (t && l) {
+        t.addEventListener("click", function () {
+          t.classList.toggle("open");
+          l.classList.toggle("open");
+        });
+        l.querySelectorAll("a").forEach(function (a) {
+          a.addEventListener("click", function () {
+            t.classList.remove("open");
+            l.classList.remove("open");
+          });
+        });
+      }
+      document.querySelectorAll(".year-js").forEach(function (el) {
+        el.textContent = new Date().getFullYear();
+      });
+    })();
+  </script>
+</body>
+</html>

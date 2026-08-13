@@ -1,0 +1,383 @@
+#!/usr/bin/env node
+/* ============================================================
+   build-blog.js — turns blog/posts/*.md into static HTML pages
+   Usage: node build-blog.js
+   Posts: blog/posts/<slug>.md with YAML-ish front matter:
+     ---
+     title: "..."
+     date: YYYY-MM-DD
+     tags: [tag1, tag2]
+     ---
+   Output: blog/index.html (listing) + blog/posts/<slug>.html
+   ============================================================ */
+"use strict";
+
+const fs = require("fs");
+const path = require("path");
+
+const ROOT = __dirname;
+const POSTS_DIR = path.join(ROOT, "blog", "posts");
+const BLOG_DIR = path.join(ROOT, "blog");
+
+/* ---------------- Markdown helpers ---------------- */
+
+function escapeHtml(s) {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function renderInline(text) {
+  return text
+    // inline code
+    .replace(/`([^`]+)`/g, (_, c) => `<code>${c}</code>`)
+    // bold
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    // italic
+    .replace(/\*([^*]+)\*/g, "<em>$1</em>")
+    // images ![alt](url)
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" />')
+    // links [text](url)
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+}
+
+function renderMarkdown(md) {
+  const lines = md.replace(/\r\n/g, "\n").split("\n");
+  const html = [];
+  let i = 0;
+  let inList = null; // 'ul' | 'ol'
+  let inCode = false;
+  let codeBuf = [];
+  let codeLang = "";
+  let inQuote = false;
+  let quoteBuf = [];
+
+  function closeList() {
+    if (inList) {
+      html.push(`</${inList}>`);
+      inList = null;
+    }
+  }
+
+  function flushQuote() {
+    if (inQuote) {
+      html.push(`<blockquote>${quoteBuf.join("")}</blockquote>`);
+      quoteBuf = [];
+      inQuote = false;
+    }
+  }
+
+  while (i < lines.length) {
+    const line = lines[i];
+
+    // fenced code blocks
+    if (/^```/.test(line)) {
+      if (!inCode) {
+        closeList();
+        flushQuote();
+        inCode = true;
+        codeLang = line.slice(3).trim();
+        codeBuf = [];
+      } else {
+        const lang = codeLang ? ` class="language-${escapeHtml(codeLang)}"` : "";
+        html.push(`<pre${lang}><code>${escapeHtml(codeBuf.join("\n"))}</code></pre>`);
+        inCode = false;
+      }
+      i++;
+      continue;
+    }
+    if (inCode) {
+      codeBuf.push(line);
+      i++;
+      continue;
+    }
+
+    // horizontal rule
+    if (/^\s*(---+|\*\*\*+)\s*$/.test(line)) {
+      closeList();
+      flushQuote();
+      html.push("<hr />");
+      i++;
+      continue;
+    }
+
+    // headings
+    const h = /^(#{1,6})\s+(.*)$/.exec(line);
+    if (h) {
+      closeList();
+      flushQuote();
+      const level = h[1].length;
+      html.push(`<h${level}>${renderInline(h[2])}</h${level}>`);
+      i++;
+      continue;
+    }
+
+    // blockquote
+    if (/^>\s?/.test(line)) {
+      closeList();
+      if (!inQuote) inQuote = true;
+      quoteBuf.push(`<p>${renderInline(line.replace(/^>\s?/, ""))}</p>`);
+      i++;
+      continue;
+    }
+    if (inQuote) {
+      flushQuote();
+    }
+
+    // unordered list
+    const ul = /^\s*[-*]\s+(.*)$/.exec(line);
+    if (ul) {
+      if (inList !== "ul") {
+        closeList();
+        html.push("<ul>");
+        inList = "ul";
+      }
+      html.push(`<li>${renderInline(ul[1])}</li>`);
+      i++;
+      continue;
+    }
+
+    // ordered list
+    const ol = /^\s*\d+\.\s+(.*)$/.exec(line);
+    if (ol) {
+      if (inList !== "ol") {
+        closeList();
+        html.push("<ol>");
+        inList = "ol";
+      }
+      html.push(`<li>${renderInline(ol[1])}</li>`);
+      i++;
+      continue;
+    }
+
+    closeList();
+
+    // blank line
+    if (line.trim() === "") {
+      i++;
+      continue;
+    }
+
+    // paragraph (gather consecutive text lines)
+    const para = [];
+    while (i < lines.length && lines[i].trim() !== "" && !/^```/.test(lines[i]) && !/^(#{1,6})\s/.test(lines[i]) && !/^\s*[-*]\s/.test(lines[i]) && !/^\s*\d+\.\s/.test(lines[i]) && !/^>\s?/.test(lines[i])) {
+      para.push(lines[i]);
+      i++;
+    }
+    html.push(`<p>${renderInline(para.join(" "))}</p>`);
+  }
+
+  closeList();
+  if (inCode) {
+    html.push(`<pre><code>${escapeHtml(codeBuf.join("\n"))}</code></pre>`);
+  }
+  flushQuote();
+
+  return html.join("\n");
+}
+
+/* ---------------- Front matter parsing ---------------- */
+
+function parsePost(file) {
+  const raw = fs.readFileSync(file, "utf8");
+  const fm = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/.exec(raw);
+  let meta = {};
+  let body = raw;
+
+  if (fm) {
+    body = fm[2];
+    const metaBlock = fm[1];
+    const title = /^title:\s*["']?(.+?)["']?\s*$/m.exec(metaBlock);
+    const date = /^date:\s*(\d{4}-\d{2}-\d{2})/m.exec(metaBlock);
+    const tags = /^tags:\s*\[(.*?)\]/m.exec(metaBlock);
+    meta.title = title ? title[1].trim() : path.basename(file, ".md");
+    meta.date = date ? date[1] : "";
+    meta.tags = tags
+      ? tags[1].split(",").map((t) => t.trim().replace(/^["']|["']$/g, "")).filter(Boolean)
+      : [];
+  } else {
+    meta.title = path.basename(file, ".md");
+    meta.date = "";
+  }
+
+  const slug = path.basename(file, ".md");
+  return { slug, ...meta, body };
+}
+
+/* ---------------- Page shell ---------------- */
+
+function navHtml(prefix) {
+  return `
+      <a href="${prefix}index.html" class="logo">NR<span class="logo-dot">.</span></a>
+      <nav class="nav-links" id="navLinks">
+        <a href="${prefix}index.html#about">About</a>
+        <a href="${prefix}index.html#education">Education</a>
+        <a href="${prefix}index.html#experience">Experience</a>
+        <a href="${prefix}index.html#skills">Skills</a>
+        <a href="${prefix}index.html#projects">Projects</a>
+        <a href="${prefix}blog/index.html">Blog</a>
+        <a href="${prefix}index.html#achievements">Achievements</a>
+        <a href="${prefix}index.html#contact" class="nav-cta">Contact</a>
+      </nav>`;
+}
+
+function pageShell(prefix, title, body, opts = {}) {
+  const { isPost = false, postUrl = "" } = opts;
+  const desc = opts.desc || "Muhammad Nazreen Nasyuha bin Razmi — Civil Engineering graduate specializing in seismic site characterization and engineering automation.";
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="${desc}" />
+  <title>${title} — Nazreen Razmi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="${prefix}style.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner container">
+${navHtml(prefix)}
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+${body}
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© <span class="year-js">2026</span> Muhammad Nazreen Nasyuha bin Razmi. Built with ❤️ and a lot of Python.</p>
+      <div class="footer-links">
+        <a href="mailto:nazreennasyuha@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/nazreenrazmi/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/NazreenNasyuha" target="_blank" rel="noopener">GitHub</a>
+        <a href="${prefix}blog/index.html">Blog</a>
+        <a href="${prefix}index.html">Home</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      "use strict";
+      const t = document.getElementById("navToggle");
+      const l = document.getElementById("navLinks");
+      if (t && l) {
+        t.addEventListener("click", function () {
+          t.classList.toggle("open");
+          l.classList.toggle("open");
+        });
+        l.querySelectorAll("a").forEach(function (a) {
+          a.addEventListener("click", function () {
+            t.classList.remove("open");
+            l.classList.remove("open");
+          });
+        });
+      }
+      document.querySelectorAll(".year-js").forEach(function (el) {
+        el.textContent = new Date().getFullYear();
+      });
+    })();
+  </script>
+</body>
+</html>
+`;
+}
+
+/* ---------------- Build ---------------- */
+
+function main() {
+  if (!fs.existsSync(POSTS_DIR)) {
+    console.error("No blog/posts directory found.");
+    process.exit(1);
+  }
+
+  const files = fs
+    .readdirSync(POSTS_DIR)
+    .filter((f) => f.endsWith(".md"))
+    .sort();
+
+  const posts = files.map((f) => parsePost(path.join(POSTS_DIR, f)));
+  posts.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
+
+  if (posts.length === 0) {
+    console.error("No markdown posts found in blog/posts/.");
+    process.exit(1);
+  }
+
+  // ---- Individual post pages ----
+  posts.forEach((post) => {
+    const html = renderMarkdown(post.body);
+    const dateStr = post.date
+      ? new Date(post.date + "T00:00:00").toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" })
+      : "";
+    const tags = post.tags.map((t) => `<span class="chip">${escapeHtml(t)}</span>`).join("\n            ");
+    const body = `
+  <main class="blog-post-page">
+    <div class="container">
+      <header class="post-header">
+        <span class="post-date">${dateStr}</span>
+        <h1>${escapeHtml(post.title)}</h1>
+        <p class="post-meta">
+          ${post.tags.length ? "Tags: " + post.tags.join(", ") : "Notes from the field"}
+        </p>
+      </header>
+      <article class="post-body">
+${html}
+      </article>
+      <div class="post-footer-links">
+        <a href="index.html">← Back to blog</a>
+        <a href="../index.html">← Home</a>
+      </div>
+    </div>
+  </main>`;
+    fs.writeFileSync(path.join(POSTS_DIR, post.slug + ".html"), pageShell("../", post.title, body, {
+      desc: `${post.title} — a post by Nazreen Razmi`,
+    }));
+    console.log(`  ✓ blog/posts/${post.slug}.html`);
+  });
+
+  // ---- Blog index ----
+  const cards = posts
+    .map((post) => {
+      const dateStr = post.date
+        ? new Date(post.date + "T00:00:00").toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" })
+        : "";
+      // first paragraph as excerpt
+      const firstPara = /<p>([\s\S]*?)<\/p>/.exec(renderMarkdown(post.body));
+      const excerpt = firstPara ? firstPara[1].replace(/<[^>]+>/g, "") : "";
+      const tags = post.tags.map((t) => `<span class="chip">${escapeHtml(t)}</span>`).join("\n          ");
+      return `        <article class="blog-card">
+          <span class="blog-date">${dateStr}</span>
+          <h3><a href="posts/${post.slug}.html">${escapeHtml(post.title)}</a></h3>
+          <p>${escapeHtml(excerpt)}</p>
+          <div class="project-tags">${tags}</div>
+          <a class="read-more" href="posts/${post.slug}.html">Read post →</a>
+        </article>`;
+    })
+    .join("\n");
+
+  const body = `
+  <main class="section" style="padding-top: calc(var(--nav-h) + 48px);">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">Blog</span>
+        <h2>Notes from the field</h2>
+        <p class="section-sub">Writing about seismic site characterization, engineering automation, and the tools I build along the way.</p>
+      </div>
+      <div class="blog-grid">
+${cards}
+      </div>
+    </div>
+  </main>`;
+
+  fs.writeFileSync(path.join(BLOG_DIR, "index.html"), pageShell("./", "Blog", body, {
+    desc: "Blog — notes on seismic site characterization, engineering automation, and tools by Nazreen Razmi.",
+  }));
+  console.log("  ✓ blog/index.html");
+  console.log(`\nDone. Built ${posts.length} post(s).`);
+}
+
+main();
