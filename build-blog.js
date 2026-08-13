@@ -223,7 +223,9 @@ function formatDate(dateStr) {
 
 function navHtml(prefix) {
   return `
-      <a href="${prefix}index.html" class="logo">NR<span class="logo-dot">.</span></a>
+      <a href="${prefix}index.html" class="logo" aria-label="PHOTO_ALBUM">
+        <img src="${prefix}assets/PHOTO_ALBUM.webp" alt="PHOTO_ALBUM" class="logo-img" />
+      </a>
       <nav class="nav-links" id="navLinks">
         <a href="${prefix}index.html#about">About</a>
         <a href="${prefix}index.html#education">Education</a>

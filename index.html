@@ -15,7 +15,9 @@
   <!-- ============ NAVBAR ============ -->
   <header class="nav">
     <div class="nav-inner container">
-      <a href="index.html" class="logo">NR<span class="logo-dot">.</span></a>
+      <a href="index.html" class="logo" aria-label="PHOTO_ALBUM">
+        <img src="assets/PHOTO_ALBUM.webp" alt="PHOTO_ALBUM" class="logo-img" />
+      </a>
       <nav class="nav-links" id="navLinks">
         <a href="#about">About</a>
         <a href="#education">Education</a>
@@ -54,8 +56,8 @@
 
       <div class="paper intro-paper" id="seismic-section">
         <div class="polaroid reveal">
-          <!-- Drop a real photo at assets/profile.jpg — until then the monogram shows -->
-          <img src="assets/profile.jpg" alt="Nazreen Razmi"
+          <!-- Real photo at assets/profile.jpeg — falls back to the monogram if missing -->
+          <img src="assets/profile.jpeg" alt="Nazreen Razmi"
                onerror="this.onerror=null; this.src='assets/profile.svg';" />
           <p class="polaroid-caption">Nazreen · Kulai, Johor ✨</p>
         </div>
