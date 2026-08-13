@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
+  <defs>
+    <filter id="grain">
+      <!-- stretched noise = long horizontal grain lines -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.008 0.06" numOctaves="4" seed="12" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.08"/>
+      <stop offset="0.45" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.4"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.75">
+      <stop offset="0" stop-color="#8a6a4f" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#8a6a4f" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="240" height="240" fill="#45362a"/>
+  <rect width="240" height="240" filter="url(#grain)" opacity="0.55"/>
+  <rect width="240" height="240" fill="url(#glow)"/>
+  <rect width="240" height="240" fill="url(#sheen)"/>
+</svg>

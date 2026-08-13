@@ -250,13 +250,19 @@ function pageShell(prefix, title, body, opts = {}) {
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Caveat:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="${prefix}style.css" />
 </head>
-<body>
+<body data-theme="dark">
   <header class="nav">
     <div class="nav-inner container">
 ${navHtml(prefix)}
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark / light theme" title="Toggle theme">
+          <span class="theme-icon theme-moon">🌙</span>
+          <span class="theme-icon theme-sun">☀️</span>
+        </button>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 ${body}
@@ -276,6 +282,19 @@ ${body}
   <script>
     (function () {
       "use strict";
+      /* theme toggle (Midnight default, Morning light) */
+      var body = document.body;
+      var tt = document.getElementById("themeToggle");
+      var saved = "dark";
+      try { saved = localStorage.getItem("nz-theme") || "dark"; } catch (e) {}
+      body.setAttribute("data-theme", saved);
+      if (tt) {
+        tt.addEventListener("click", function () {
+          var next = body.getAttribute("data-theme") === "light" ? "dark" : "light";
+          body.setAttribute("data-theme", next);
+          try { localStorage.setItem("nz-theme", next); } catch (e) {}
+        });
+      }
       /* nav toggle */
       var nt = document.getElementById("navToggle");
       var l = document.getElementById("navLinks");

@@ -6,6 +6,35 @@
 (function () {
   "use strict";
 
+  /* ============ Theme toggle (Midnight default, Morning light) ============ */
+  const themeToggle = document.getElementById("themeToggle");
+  const THEME_KEY = "nz-theme";
+
+  function applyTheme(theme) {
+    document.body.setAttribute("data-theme", theme);
+    try {
+      localStorage.setItem(THEME_KEY, theme);
+    } catch (e) {
+      /* localStorage unavailable — fine */
+    }
+  }
+
+  // Default is dark (Midnight Collection)
+  let savedTheme = "dark";
+  try {
+    savedTheme = localStorage.getItem(THEME_KEY) || "dark";
+  } catch (e) {
+    /* ignore */
+  }
+  applyTheme(savedTheme);
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", function () {
+      const current = document.body.getAttribute("data-theme") === "light" ? "dark" : "light";
+      applyTheme(current);
+    });
+  }
+
   /* ============ Rotating hero text ============ */
   const rotator = document.getElementById("rotator");
   if (rotator) {
