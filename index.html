@@ -52,7 +52,7 @@
       <div class="wood-grain" aria-hidden="true"></div>
       <div class="clip top-clip" aria-hidden="true"></div>
 
-      <div class="paper intro-paper">
+      <div class="paper intro-paper" id="seismic-section">
         <div class="polaroid reveal">
           <!-- Drop a real photo at assets/profile.jpg — until then the monogram shows -->
           <img src="assets/profile.jpg" alt="Nazreen Razmi"
@@ -425,6 +425,31 @@
   <footer class="footer">
     <div class="container footer-inner">
       <p>© <span id="year"></span> Muhammad Nazreen Nasyuha bin Razmi. Built with ❤️ and a lot of Python.</p>
+      <div class="mc-area" title="Click the block...">
+        <button class="minecraft-block" id="mcBlock" aria-label="Interactive block — click it!">
+          <!-- pixel-art dirt block (Minecraft-style) -->
+          <svg viewBox="0 0 16 16" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+            <rect width="16" height="16" fill="#8b5a2b"/>
+            <rect x="1" y="1" width="3" height="3" fill="#a06a35"/>
+            <rect x="5" y="2" width="3" height="2" fill="#6e4523"/>
+            <rect x="9" y="1" width="2" height="3" fill="#a06a35"/>
+            <rect x="12" y="2" width="3" height="2" fill="#6e4523"/>
+            <rect x="2" y="5" width="2" height="3" fill="#6e4523"/>
+            <rect x="5" y="5" width="3" height="3" fill="#a06a35"/>
+            <rect x="9" y="5" width="3" height="2" fill="#6e4523"/>
+            <rect x="13" y="5" width="2" height="3" fill="#a06a35"/>
+            <rect x="1" y="9" width="3" height="2" fill="#a06a35"/>
+            <rect x="5" y="9" width="2" height="3" fill="#6e4523"/>
+            <rect x="8" y="9" width="3" height="3" fill="#a06a35"/>
+            <rect x="12" y="9" width="3" height="2" fill="#6e4523"/>
+            <rect x="2" y="12" width="3" height="3" fill="#6e4523"/>
+            <rect x="6" y="13" width="3" height="2" fill="#a06a35"/>
+            <rect x="10" y="12" width="2" height="3" fill="#a06a35"/>
+            <rect x="13" y="13" width="2" height="2" fill="#6e4523"/>
+          </svg>
+        </button>
+        <span class="mc-hint">Master Engineer Block<br />Click me 50×...</span>
+      </div>
       <div class="footer-links">
         <a href="mailto:nazreennasyuha@gmail.com">Email</a>
         <a href="https://www.linkedin.com/in/nazreenrazmi/" target="_blank" rel="noopener">LinkedIn</a>
@@ -449,6 +474,16 @@
   </div>
 
   <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+
+  <div class="game-toast" id="gameToast" role="status" aria-live="polite"></div>
+
+  <div class="achievement-popup" id="achPopup" role="status" aria-live="polite">
+    <span class="ach-ico">🏆</span>
+    <span class="ach-txt">
+      <small>Achievement unlocked</small>
+      <strong>Master Engineer</strong>
+    </span>
+  </div>
 
   <script src="script.js"></script>
 </body>

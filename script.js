@@ -309,9 +309,148 @@
     });
   }
 
+  /* ============ Seismic easter egg ============ */
+  const seismicSection = document.getElementById("seismic-section");
+  const gameToast = document.getElementById("gameToast");
+  let seismicClicks = [];
+  let toastTimer = null;
+
+  function showGameToast(msg) {
+    if (!gameToast) return;
+    gameToast.textContent = msg;
+    gameToast.classList.add("show");
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () {
+      gameToast.classList.remove("show");
+    }, 2600);
+  }
+
+  if (seismicSection) {
+    seismicSection.addEventListener("click", function () {
+      const now = Date.now();
+      seismicClicks = seismicClicks.filter(function (t) { return now - t < 2500; });
+      seismicClicks.push(now);
+      if (seismicClicks.length >= 5) {
+        seismicClicks = [];
+        seismicSection.classList.remove("seismic-shake");
+        // restart the animation
+        void seismicSection.offsetWidth;
+        seismicSection.classList.add("seismic-shake");
+        showGameToast("\u{1F30A} Seismic activity detected!");
+        setTimeout(function () {
+          seismicSection.classList.remove("seismic-shake");
+        }, 2200);
+      }
+    });
+  }
+
+  /* ============ Custom cursor + cloud trail ============ */
+  const finePointer = window.matchMedia && window.matchMedia("(pointer: fine)").matches;
+  const reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (finePointer && !reducedMotion) {
+    document.body.classList.add("custom-cursor");
+
+    const cloud = document.createElement("div");
+    cloud.className = "cursor-cloud";
+    cloud.setAttribute("aria-hidden", "true");
+    cloud.innerHTML =
+      '<svg viewBox="0 0 30 22" xmlns="http://www.w3.org/2000/svg">' +
+      '<path d="M8 18 h16 a4.5 4.5 0 0 0 0-9 a6.5 6.5 0 0 0-12.5-1.5 A4.8 4.8 0 0 0 8 18 Z" ' +
+      'fill="currentColor" opacity="0.85"/></svg>';
+    document.body.appendChild(cloud);
+
+    let cx = -100, cy = -100;
+    let targetX = -100, targetY = -100;
+
+    function spawnTrail(x, y) {
+      const dot = document.createElement("span");
+      dot.className = "trail-dot";
+      const size = 5 + Math.random() * 7;
+      dot.style.width = size + "px";
+      dot.style.height = size + "px";
+      dot.style.left = x + "px";
+      dot.style.top = y + "px";
+      document.body.appendChild(dot);
+      setTimeout(function () { dot.remove(); }, 650);
+    }
+
+    document.addEventListener("mousemove", function (e) {
+      targetX = e.clientX;
+      targetY = e.clientY;
+      // throttle trail spawns slightly
+      if (Math.random() < 0.45) spawnTrail(targetX, targetY);
+    });
+
+    (function animateCursor() {
+      cx += (targetX - cx) * 0.28;
+      cy += (targetY - cy) * 0.28;
+      cloud.style.transform = "translate(" + (cx - 15) + "px, " + (cy - 11) + "px)";
+      requestAnimationFrame(animateCursor);
+    })();
+
+    document.addEventListener("mouseleave", function () {
+      cloud.style.opacity = "0";
+    });
+    document.addEventListener("mouseenter", function () {
+      cloud.style.opacity = "0.92";
+    });
+  }
+
+  /* ============ Minecraft block + achievement ============ */
+  const mcBlock = document.getElementById("mcBlock");
+  const achPopup = document.getElementById("achPopup");
+  const MC_KEY = "nz-mc-clicks";
+  let mcClicks = 0;
+  try {
+    mcClicks = parseInt(localStorage.getItem(MC_KEY) || "0", 10) || 0;
+  } catch (e) { /* ignore */ }
+
+  function showAchievement() {
+    if (!achPopup) return;
+    achPopup.classList.add("show");
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () {
+      achPopup.classList.remove("show");
+    }, 3600);
+  }
+
+  function playClickSound() {
+    try {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) return;
+      const ctx = new Ctx();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = "square";
+      osc.frequency.setValueAtTime(180, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(90, ctx.currentTime + 0.08);
+      gain.gain.setValueAtTime(0.08, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.12);
+      setTimeout(function () { ctx.close(); }, 300);
+    } catch (e) { /* audio blocked — fine */ }
+  }
+
+  if (mcBlock) {
+    mcBlock.addEventListener("click", function () {
+      mcClicks += 1;
+      try { localStorage.setItem(MC_KEY, String(mcClicks)); } catch (e) { /* ignore */ }
+      playClickSound();
+
+      if (mcClicks >= 50) {
+        showAchievement();
+        mcClicks = 0;
+        try { localStorage.setItem(MC_KEY, "0"); } catch (e) { /* ignore */ }
+      }
+    });
+  }
+
   /* ============ Copy to clipboard ============ */
   const copyToast = document.getElementById("copyToast");
-  let toastTimer = null;
 
   function copyText(text) {
     if (navigator.clipboard && navigator.clipboard.writeText) {

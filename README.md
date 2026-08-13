@@ -10,12 +10,13 @@ vanilla JavaScript. It just works.
 
 ```
 my-website/
-├── index.html          → homepage (hero, about, education, experience, skills, projects, blog teaser, achievements, contact)
-├── style.css           → the whole theme (dark default + light via the toggle)
-├── script.js           → theme toggle, typing rotator, scrollspy, project filters, back-to-top, contact form
+├── index.html          → homepage (two-clipboard canvas, education, achievements, blog teaser, contact)
+├── style.css           → the whole theme (Midnight dark default + Morning light)
+├── script.js           → theme toggle, rotator, scrollspy, filters, modal, copy, contact form + easter eggs
 ├── build-blog.js       → turns markdown posts into the blog pages + homepage teaser (node build-blog.js)
 ├── assets/
-│   └── profile.svg     → monogram avatar (shown until you add a real photo)
+│   ├── profile.svg     → monogram avatar (shown until you add a real photo)
+│   └── textures/       → paper & wood photo textures (light + dark variants)
 └── blog/
     ├── index.html      → blog listing (generated — don't edit by hand)
     └── posts/
@@ -23,14 +24,38 @@ my-website/
         └── *.html      → generated post pages (don't edit by hand)
 ```
 
+## Themes — Midnight & Morning
+
+The site defaults to the **Midnight Collection** (dark, cozy midnight blues)
+and can switch to the **Morning Collection** (light, airy dusty blues) with
+the 🌙/☀️ toggle in the navbar. The choice is remembered in `localStorage`,
+and transitions are smooth (0.5s).
+
+Both themes use real **photo textures** (`assets/textures/`) — walnut wood
+grain for the clipboards and fiber paper for the sheets — with separate
+light/dark variants.
+
 ## Interactive features
 
-- **Theme toggle** — dark/light, remembered in `localStorage` (🌙/☀️ in the navbar)
+- **Theme toggle** — Midnight ↔ Morning, remembered across visits
 - **Typing rotator** — the hero headline cycles through your focus areas
 - **Scrollspy** — the navbar highlights the section you're viewing
-- **Project filters** — Research / Software / Design chips in the Projects section
-- **Back-to-top** button appears after scrolling
-- **Contact form** — posts to Web3Forms when a key is set (see below)
+- **Project filters** — Research / Software / Design chips
+- **Project modals** — click a project tile for a full preview
+- **Copy-to-clipboard** — ⧉ buttons on email & phone in the contact sheet
+- **Back-to-top** button after scrolling
+
+### Hidden easter eggs 🥚
+
+1. **Seismic activity** — click the "Hi, I'm Nazreen" intro card **5 times
+   quickly** and the whole section shakes like an earthquake, then shows a
+   "Seismic activity detected!" toast. (A nod to your HVSR research.)
+2. **Cloud cursor & trail** — on desktop, the cursor becomes a little cloud
+   that leaves a fading trail of dots. (Disabled for touch devices and
+   `prefers-reduced-motion`.)
+3. **Master Engineer Block** — a Minecraft-style dirt block in the footer.
+   Click it: it plays a click sound. Click it **50 times** and a Minecraft-
+   style "Achievement unlocked: Master Engineer" popup appears.
 
 ## Contact form (Web3Forms)
 
@@ -45,12 +70,10 @@ submissions directly in your inbox:
 const WEB3FORMS_ACCESS_KEY = ""; // <-- paste your key here
 ```
 
-That's it — submissions will now arrive in your email.
-
 ## Adding your photo
 
-Drop a photo at `assets/profile.jpg` (square works best). The homepage hero
-picks it up automatically — until then it shows the `NR` monogram.
+Drop a photo at `assets/profile.jpg` (square works best). The polaroid in
+the hero picks it up automatically — until then it shows the `NR` monogram.
 
 ## Writing a blog post
 
