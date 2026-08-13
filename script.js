@@ -1,43 +1,10 @@
 /* ============================================================
-   Nazreen Razmi — Portfolio
-   Interactions: theme, nav, rotator, filters, contact form
+   Nazreen Razmi — Portfolio (Morning Collection)
+   Interactions: rotator, nav, filters, modal, copy, form
    ============================================================ */
 
 (function () {
   "use strict";
-
-  /* ============ Theme toggle ============ */
-  const root = document.documentElement;
-  const themeToggle = document.getElementById("themeToggle");
-  const THEME_KEY = "nz-theme";
-
-  function applyTheme(theme) {
-    root.setAttribute("data-theme", theme);
-    try {
-      localStorage.setItem(THEME_KEY, theme);
-    } catch (e) {
-      /* localStorage unavailable — fine */
-    }
-  }
-
-  function initTheme() {
-    let saved = "dark";
-    try {
-      saved = localStorage.getItem(THEME_KEY) || "dark";
-    } catch (e) {
-      /* ignore */
-    }
-    applyTheme(saved);
-  }
-
-  if (themeToggle) {
-    themeToggle.addEventListener("click", function () {
-      const current = root.getAttribute("data-theme") === "light" ? "dark" : "light";
-      applyTheme(current);
-    });
-  }
-
-  initTheme();
 
   /* ============ Rotating hero text ============ */
   const rotator = document.getElementById("rotator");
@@ -167,9 +134,9 @@
 
   /* ============ Project filters ============ */
   const filterBar = document.getElementById("projectFilters");
-  const projectCards = document.querySelectorAll(".project-card");
+  const projectTiles = document.querySelectorAll(".project-tile");
 
-  if (filterBar && projectCards.length) {
+  if (filterBar && projectTiles.length) {
     filterBar.addEventListener("click", function (e) {
       const chip = e.target.closest(".filter-chip");
       if (!chip) return;
@@ -179,12 +146,183 @@
       });
 
       const filter = chip.getAttribute("data-filter");
-      projectCards.forEach(function (card) {
-        const show = filter === "all" || card.getAttribute("data-category") === filter;
-        card.classList.toggle("hidden", !show);
+      projectTiles.forEach(function (tile) {
+        const show = filter === "all" || tile.getAttribute("data-category") === filter;
+        tile.classList.toggle("hidden", !show);
       });
     });
   }
+
+  /* ============ Project modal ============ */
+  const projects = {
+    fyp: {
+      icon: "🌍",
+      title: "Final Year Project — Microzonation Mapping",
+      desc: "Seismic microzonation research using ambient noise recordings to characterize local site effects. (Project location omitted in compliance with Non-Disclosure Agreement.)",
+      points: [
+        "Extracted Horizontal-to-Vertical Spectral Ratio (HVSR) data",
+        "Processed & troubleshooted Geopsy, EasyHVSR, Dinver, and hvsrpy workflows",
+        "Built Python tooling to automate repetitive analysis steps",
+      ],
+      tags: ["Python", "Geopsy", "HVSR", "Research"],
+      links: [],
+    },
+    hvsr: {
+      icon: "📊",
+      title: "HVSR Analyzer — Desktop App",
+      desc: "A friendly desktop app that turns microtremor recordings into ground-motion results — no Python to install, no packages to fiddle with. It just runs.",
+      points: [
+        "Computes H/V spectral ratio curves from many field file formats, with drag & drop",
+        "Validates results against SESAME 2004 guidelines (plus SNI 1726-2019, USGS, Japan)",
+        "Inverts curves into layered soil models — Vs, Vs30, and NEHRP/SNI soil class",
+      ],
+      tags: ["Python", "Zero third-party deps", "Desktop"],
+      links: [
+        { label: "GitHub", href: "https://github.com/NazreenNasyuha/HVSR_Analyzer" },
+      ],
+    },
+    ultcalc: {
+      icon: "🧮",
+      title: "UltCalc — Scientific & Graphing Calculator",
+      desc: "A feature-packed scientific calculator with a textbook-quality MathML expression display and a full graphing calculator — in a single-page web app with zero dependencies.",
+      points: [
+        "Scientific functions, MathML rendering, and graphing in vanilla JavaScript",
+        "No build step, no frameworks — plain HTML + CSS + ES modules",
+        "Runs anywhere: live link, single-file download, or from source",
+      ],
+      tags: ["HTML", "CSS", "JavaScript"],
+      links: [
+        { label: "Live demo", href: "https://nazreennasyuha.github.io/UtlCalculator/" },
+        { label: "GitHub", href: "https://github.com/NazreenNasyuha/UtlCalculator" },
+      ],
+    },
+    idp: {
+      icon: "🏗️",
+      title: "Integrated Design Project — Drainage & Earthwork",
+      desc: "Full drainage system and earthwork design for site development, covering hydraulics, grading, and soil optimization.",
+      points: [
+        "Designed drainage system based on site conditions and rainfall considerations",
+        "Planned earthwork including cut & fill calculations",
+        "Ensured proper land leveling and optimized soil usage",
+      ],
+      tags: ["AutoCAD", "Hydrology", "Site Development"],
+      links: [],
+    },
+  };
+
+  const modalOverlay = document.getElementById("projectModal");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalIcon = document.getElementById("modalIcon");
+  const modalDesc = document.getElementById("modalDesc");
+  const modalPoints = document.getElementById("modalPoints");
+  const modalTags = document.getElementById("modalTags");
+  const modalLinks = document.getElementById("modalLinks");
+  const modalClose = document.getElementById("modalClose");
+
+  function openModal(key) {
+    const p = projects[key];
+    if (!p || !modalOverlay) return;
+
+    modalTitle.textContent = p.title;
+    modalIcon.textContent = p.icon;
+    modalDesc.textContent = p.desc;
+
+    modalPoints.innerHTML = "";
+    p.points.forEach(function (point) {
+      const li = document.createElement("li");
+      li.textContent = point;
+      modalPoints.appendChild(li);
+    });
+
+    modalTags.innerHTML = "";
+    p.tags.forEach(function (tag) {
+      const span = document.createElement("span");
+      span.className = "chip";
+      span.textContent = tag;
+      modalTags.appendChild(span);
+    });
+
+    modalLinks.innerHTML = "";
+    if (p.links.length) {
+      p.links.forEach(function (link) {
+        const a = document.createElement("a");
+        a.href = link.href;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.textContent = link.label + " ↗";
+        modalLinks.appendChild(a);
+      });
+    }
+
+    modalOverlay.hidden = false;
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeModal() {
+    if (!modalOverlay) return;
+    modalOverlay.hidden = true;
+    document.body.style.overflow = "";
+  }
+
+  if (modalOverlay && modalClose) {
+    projectTiles.forEach(function (tile) {
+      tile.addEventListener("click", function () {
+        openModal(tile.getAttribute("data-project"));
+      });
+    });
+
+    modalClose.addEventListener("click", closeModal);
+    modalOverlay.addEventListener("click", function (e) {
+      if (e.target === modalOverlay) closeModal();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeModal();
+    });
+  }
+
+  /* ============ Copy to clipboard ============ */
+  const copyToast = document.getElementById("copyToast");
+  let toastTimer = null;
+
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+    // Fallback for older browsers
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand("copy");
+    } catch (e) {
+      /* ignore */
+    }
+    document.body.removeChild(ta);
+    return Promise.resolve();
+  }
+
+  function showToast() {
+    if (!copyToast) return;
+    copyToast.classList.add("show");
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () {
+      copyToast.classList.remove("show");
+    }, 1600);
+  }
+
+  document.querySelectorAll(".copy-btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      const text = btn.getAttribute("data-copy") || "";
+      copyText(text)
+        .then(showToast)
+        .catch(function () {
+          /* clipboard blocked — do nothing */
+        });
+    });
+  });
 
   /* ============ Contact form ============
      If a Web3Forms access key is configured below, submissions are
@@ -241,7 +379,7 @@
               throw new Error(data.message || "Submission failed");
             }
           })
-          .catch(function (err) {
+          .catch(function () {
             note.textContent = "Something went wrong. Please email me directly at nazreennasyuha@gmail.com";
             note.classList.add("error");
           })

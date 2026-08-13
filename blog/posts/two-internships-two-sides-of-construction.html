@@ -7,10 +7,10 @@
   <title>Two internships, two very different sides of construction — Nazreen Razmi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Caveat:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../style.css" />
 </head>
-<body data-theme="dark">
+<body>
   <header class="nav">
     <div class="nav-inner container">
 
@@ -25,15 +25,9 @@
         <a href="../index.html#achievements">Achievements</a>
         <a href="../index.html#contact" class="nav-cta">Contact</a>
       </nav>
-      <div class="nav-actions">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark / light theme" title="Toggle theme">
-          <span class="theme-icon theme-sun">☀️</span>
-          <span class="theme-icon theme-moon">🌙</span>
-        </button>
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
@@ -119,19 +113,6 @@
   <script>
     (function () {
       "use strict";
-      /* theme */
-      var root = document.documentElement;
-      var t = document.getElementById("themeToggle");
-      var saved = "dark";
-      try { saved = localStorage.getItem("nz-theme") || "dark"; } catch (e) {}
-      root.setAttribute("data-theme", saved);
-      if (t) {
-        t.addEventListener("click", function () {
-          var next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
-          root.setAttribute("data-theme", next);
-          try { localStorage.setItem("nz-theme", next); } catch (e) {}
-        });
-      }
       /* nav toggle */
       var nt = document.getElementById("navToggle");
       var l = document.getElementById("navLinks");
@@ -147,12 +128,15 @@
           });
         });
       }
-      /* back to top */
+      /* navbar shadow + back to top */
+      var nav = document.querySelector(".nav");
       var top = document.getElementById("toTop");
+      window.addEventListener("scroll", function () {
+        var y = window.scrollY;
+        if (nav) nav.classList.toggle("scrolled", y > 10);
+        if (top) top.classList.toggle("visible", y > 480);
+      }, { passive: true });
       if (top) {
-        window.addEventListener("scroll", function () {
-          top.classList.toggle("visible", window.scrollY > 480);
-        }, { passive: true });
         top.addEventListener("click", function () {
           window.scrollTo({ top: 0, behavior: "smooth" });
         });

@@ -7,10 +7,10 @@
   <title>Nazreen Razmi — Civil Engineer & Seismic Researcher</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Caveat:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body data-theme="dark">
+<body>
 
   <!-- ============ NAVBAR ============ -->
   <header class="nav">
@@ -26,103 +26,215 @@
         <a href="#achievements">Achievements</a>
         <a href="#contact" class="nav-cta">Contact</a>
       </nav>
-      <div class="nav-actions">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark / light theme" title="Toggle theme">
-          <span class="theme-icon theme-sun">☀️</span>
-          <span class="theme-icon theme-moon">🌙</span>
-        </button>
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
-  <!-- ============ HERO ============ -->
-  <section class="hero" id="home">
-    <div class="hero-bg" aria-hidden="true">
-      <span class="ring ring-1"></span>
-      <span class="ring ring-2"></span>
-      <span class="ring ring-3"></span>
+  <!-- ============ PORTFOLIO CANVAS (two clipboards) ============ -->
+  <main class="portfolio-canvas">
+    <div class="canvas-bg" aria-hidden="true">
+      <span class="moon"></span>
+      <span class="cloud cloud-1"></span>
+      <span class="cloud cloud-2"></span>
+      <div class="dot-grid"></div>
     </div>
-    <div class="container hero-inner">
-      <div class="hero-avatar reveal" aria-hidden="false">
-        <!--
-          Drop a real photo at assets/profile.jpg and it will be used automatically.
-          Until then, the monogram avatar (assets/profile.svg) is shown.
-        -->
-        <img src="assets/profile.jpg" alt="Nazreen Razmi"
-             onerror="this.onerror=null; this.src='assets/profile.svg';" />
-      </div>
-      <div class="hero-text">
-      <p class="hero-eyebrow reveal">👋 Hi, I'm</p>
-      <h1 class="hero-name reveal">
-        Muhammad Nazreen<br />Nasyuha <span class="accent">bin Razmi</span>
-      </h1>
-      <p class="hero-title reveal">
-        Civil Engineering Graduate · <span class="rotator" id="rotator">Seismic Site Characterization</span>
-      </p>
-      <p class="hero-sub reveal">
-        I combine a solid foundation in infrastructure design and structural coordination with
-        hands-on experience in seismic microzonation research and building tools that make
-        engineering workflows faster and smarter.
-      </p>
-      <div class="hero-actions reveal">
-        <a href="#projects" class="btn btn-primary">View My Work</a>
-        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
-      </div>
-      <div class="hero-meta reveal">
-        <span>📍 Kulai, Johor, Malaysia</span>
-        <span>🎓 UTM · B.Eng. Civil (Hons)</span>
-        <span>📊 CGPA 3.2</span>
-      </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ============ ABOUT / BIODATA ============ -->
-  <section class="section" id="about">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="section-tag">Biodata</span>
-        <h2>About Me</h2>
-      </div>
-      <div class="about-grid">
-        <div class="about-card reveal">
-          <h3>Who I am</h3>
-          <p>
-            Highly motivated Civil Engineering graduate with a strong foundation in infrastructure
-            design, structural coordination, and seismic site characterization. I'm eager to learn
-            and adapt quickly to emerging technologies, and I love using automation to turn
-            repetitive engineering tasks into reliable, repeatable workflows.
-          </p>
-          <p>
-            My final year project focused on microzonation mapping — processing ambient noise
-            recordings with Geopsy, EasyHVSR, Dinver, and hvsrpy to characterize local site
-            effects through Horizontal-to-Vertical Spectral Ratio (HVSR) analysis.
-          </p>
+    <!-- ===== Left clipboard: intro + contact ===== -->
+    <section class="clipboard left-clipboard" id="about">
+      <div class="wood-grain" aria-hidden="true"></div>
+      <div class="clip top-clip" aria-hidden="true"></div>
+
+      <div class="paper intro-paper">
+        <div class="polaroid reveal">
+          <!-- Drop a real photo at assets/profile.jpg — until then the monogram shows -->
+          <img src="assets/profile.jpg" alt="Nazreen Razmi"
+               onerror="this.onerror=null; this.src='assets/profile.svg';" />
+          <p class="polaroid-caption">Nazreen · Kulai, Johor ✨</p>
         </div>
-        <div class="about-facts reveal">
-          <h3>Quick facts</h3>
-          <ul class="facts">
-            <li><strong>Name</strong><span>Muhammad Nazreen Nasyuha bin Razmi</span></li>
-            <li><strong>Location</strong><span>Kulai, Johor, Malaysia</span></li>
-            <li><strong>Field</strong><span>Civil Engineering (Hons)</span></li>
-            <li><strong>Focus</strong><span>Seismic site characterization</span></li>
-            <li><strong>Languages</strong><span>Malay (fluent) · English (intermediate) · French (basic)</span></li>
-            <li><strong>Email</strong><span><a href="mailto:nazreennasyuha@gmail.com">nazreennasyuha@gmail.com</a></span></li>
-          </ul>
+
+        <p class="intro-script reveal">Hi, I'm</p>
+        <h1 class="intro-name reveal">
+          Nazreen <span class="accent">Razmi</span>
+        </h1>
+        <p class="intro-role reveal">
+          Civil Engineering Graduate · <span class="rotator" id="rotator">Seismic Site Characterization</span>
+        </p>
+        <p class="intro-bio reveal">
+          I combine a solid foundation in infrastructure design and structural coordination with
+          hands-on experience in seismic microzonation research — and I build tools that make
+          engineering workflows faster, smarter, and repeatable.
+        </p>
+      </div>
+
+      <div class="paper contact-paper reveal">
+        <h2 class="paper-heading cursive">Contact</h2>
+        <div class="contact-list">
+          <div class="contact-item">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            </span>
+            <span class="contact-text">
+              <small>Email</small>
+              <strong>nazreennasyuha@gmail.com</strong>
+            </span>
+            <button class="copy-btn" data-copy="nazreennasyuha@gmail.com" aria-label="Copy email">⧉</button>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>
+            </span>
+            <span class="contact-text">
+              <small>Phone</small>
+              <strong>+60 18-777 1460</strong>
+            </span>
+            <button class="copy-btn" data-copy="+60187771460" aria-label="Copy phone">⧉</button>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+            </span>
+            <span class="contact-text">
+              <small>Location</small>
+              <strong>Kulai, Johor, Malaysia</strong>
+            </span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
+            </span>
+            <span class="contact-text">
+              <small>Status</small>
+              <strong>Open to opportunities</strong>
+            </span>
+          </div>
+        </div>
+
+        <div class="socials">
+          <a href="https://www.linkedin.com/in/nazreenrazmi/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.24 8.31h4.52V23H.24V8.31Zm7.38 0h4.33v2h.06c.6-1.14 2.08-2.34 4.28-2.34 4.57 0 5.41 3.01 5.41 6.92V23h-4.51v-7.12c0-1.7-.03-3.88-2.37-3.88-2.37 0-2.73 1.85-2.73 3.76V23H7.62V8.31Z"/></svg>
+          </a>
+          <a href="https://github.com/NazreenNasyuha" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.17c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.73.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.78 1.05.78 2.12v3.14c0 .3.2.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+          </a>
+          <a href="mailto:nazreennasyuha@gmail.com" aria-label="Email" class="social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          </a>
+        </div>
+        <span class="toast" id="copyToast">Copied!</span>
+      </div>
+    </section>
+
+    <!-- ===== Right clipboard: projects + experience + tools ===== -->
+    <section class="clipboard right-clipboard">
+      <div class="wood-grain" aria-hidden="true"></div>
+      <div class="clip binder-clip" aria-hidden="true"></div>
+
+      <!-- Projects -->
+      <div class="paper projects-paper" id="projects">
+        <div class="paper-head">
+          <h2 class="cursive">My Project Recently</h2>
+          <div class="filter-bar" id="projectFilters">
+            <button class="filter-chip active" data-filter="all">All</button>
+            <button class="filter-chip" data-filter="research">Research</button>
+            <button class="filter-chip" data-filter="software">Software</button>
+            <button class="filter-chip" data-filter="design">Design</button>
+          </div>
+        </div>
+
+        <div class="project-grid" id="projectGrid">
+          <button class="project-tile reveal" data-category="research" data-project="fyp">
+            <span class="tile-art tile-fyp">🌍</span>
+            <span class="tile-title">Microzonation Mapping</span>
+            <span class="tile-tag">Final Year Project</span>
+          </button>
+          <button class="project-tile reveal" data-category="software" data-project="hvsr">
+            <span class="tile-art tile-hvsr">📊</span>
+            <span class="tile-title">HVSR Analyzer</span>
+            <span class="tile-tag">Desktop App</span>
+          </button>
+          <button class="project-tile reveal" data-category="software" data-project="ultcalc">
+            <span class="tile-art tile-ultcalc">🧮</span>
+            <span class="tile-title">UltCalc</span>
+            <span class="tile-tag">Calculator Web App</span>
+          </button>
+          <button class="project-tile reveal" data-category="design" data-project="idp">
+            <span class="tile-art tile-idp">🏗️</span>
+            <span class="tile-title">Drainage &amp; Earthwork</span>
+            <span class="tile-tag">Integrated Design Project</span>
+          </button>
         </div>
       </div>
-    </div>
-  </section>
+
+      <!-- Experience -->
+      <div class="paper exp-paper" id="experience">
+        <h2 class="cursive">Experience</h2>
+        <div class="exp-list">
+          <div class="exp-item">
+            <div class="exp-head">
+              <strong>Assistant Engineer (Intern)</strong>
+              <span class="exp-date">Jun – Sep 2025</span>
+            </div>
+            <p class="exp-org">Jurutera JRK Sdn Bhd</p>
+            <p class="exp-desc">AutoCAD drawings, drainage design &amp; calculations, site visits, drawing coordination and documentation.</p>
+          </div>
+          <div class="exp-item">
+            <div class="exp-head">
+              <strong>Site Supervisor (Intern)</strong>
+              <span class="exp-date">Aug – Dec 2023</span>
+            </div>
+            <p class="exp-org">Haily Construction Sdn Bhd</p>
+            <p class="exp-desc">Site operations supervision, concrete cube testing, scheduling support, machinery permits and material coordination.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tools -->
+      <div class="paper tools-paper" id="skills">
+        <h2 class="cursive">Tools I use</h2>
+        <div class="tools-grid">
+          <div class="tool-item" data-tooltip="Python · automation & HVSR scripting">
+            <span class="tool-badge">Py</span><span>Python</span>
+          </div>
+          <div class="tool-item" data-tooltip="Drafting & design">
+            <span class="tool-badge">AC</span><span>AutoCAD</span>
+          </div>
+          <div class="tool-item" data-tooltip="Building information modeling">
+            <span class="tool-badge">Rv</span><span>Revit</span>
+          </div>
+          <div class="tool-item" data-tooltip="Water network analysis">
+            <span class="tool-badge">EP</span><span>EPANET</span>
+          </div>
+          <div class="tool-item" data-tooltip="Seismic H/V processing">
+            <span class="tool-badge">Gs</span><span>Geopsy</span>
+          </div>
+          <div class="tool-item" data-tooltip="1D inversion">
+            <span class="tool-badge">Dn</span><span>Dinver</span>
+          </div>
+          <div class="tool-item" data-tooltip="Numerical analysis">
+            <span class="tool-badge">ML</span><span>MATLAB</span>
+          </div>
+          <div class="tool-item" data-tooltip="Microsoft Office suite">
+            <span class="tool-badge">Of</span><span>MS Office</span>
+          </div>
+          <div class="tool-item" data-tooltip="Design & presentation">
+            <span class="tool-badge">Cn</span><span>Canva</span>
+          </div>
+          <div class="tool-item" data-tooltip="Web basics">
+            <span class="tool-badge">‹/›</span><span>HTML/CSS/JS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- ============ EDUCATION ============ -->
-  <section class="section section-alt" id="education">
+  <section class="section" id="education">
     <div class="container">
       <div class="section-head reveal">
         <span class="section-tag">Education</span>
-        <h2>Where I studied</h2>
+        <h2 class="cursive big">Where I studied</h2>
       </div>
       <div class="timeline">
         <div class="timeline-item reveal">
@@ -166,218 +278,44 @@
     </div>
   </section>
 
-  <!-- ============ EXPERIENCE ============ -->
-  <section class="section" id="experience">
+  <!-- ============ ACHIEVEMENTS ============ -->
+  <section class="section" id="achievements">
     <div class="container">
       <div class="section-head reveal">
-        <span class="section-tag">Work Experience</span>
-        <h2>Where I've worked</h2>
+        <span class="section-tag">Achievements</span>
+        <h2 class="cursive big">Milestones</h2>
       </div>
-      <div class="exp-grid">
-        <article class="exp-card reveal">
-          <div class="exp-top">
-            <div>
-              <h3>Assistant Engineer (Intern)</h3>
-              <p class="exp-org">Jurutera JRK Sdn Bhd</p>
-            </div>
-            <span class="exp-date">Jun – Sep 2025</span>
-          </div>
-          <ul class="exp-list">
-            <li>Prepared technical drawings including road signage layouts and building plans using AutoCAD.</li>
-            <li>Assisted in basic drainage design and engineering calculations.</li>
-            <li>Conducted site visits to collect data and verify design implementation.</li>
-            <li>Coordinated with senior engineers to review, finalize, and approve drawings.</li>
-            <li>Compiled and organized approved drawings into formal documentation and submission reports.</li>
-          </ul>
-        </article>
-        <article class="exp-card reveal">
-          <div class="exp-top">
-            <div>
-              <h3>Site Supervisor (Intern)</h3>
-              <p class="exp-org">Haily Construction Sdn Bhd</p>
-            </div>
-            <span class="exp-date">Aug – Dec 2023</span>
-          </div>
-          <ul class="exp-list">
-            <li>Supervised daily site operations, ensuring work met schedule and specifications.</li>
-            <li>Monitored worker performance and coordinated site activities to maintain workflow efficiency.</li>
-            <li>Conducted concrete cube testing to verify material strength and quality compliance.</li>
-            <li>Supported project scheduling and tracked task progress for timely completion.</li>
-            <li>Managed machinery permit applications and coordinated material purchasing and delivery.</li>
-          </ul>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ SKILLS ============ -->
-  <section class="section section-alt" id="skills">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="section-tag">Things I do</span>
-        <h2>Skills &amp; Tools</h2>
-      </div>
-      <div class="skills-grid">
-        <div class="skill-card reveal">
-          <h3>🛠️ Technical</h3>
-          <div class="skill-tags">
-            <span class="chip">Project Management</span>
-            <span class="chip">AutoCAD</span>
-            <span class="chip">Revit</span>
-            <span class="chip">EPANET</span>
-            <span class="chip">MS Office</span>
-            <span class="chip">Canva</span>
-          </div>
+      <div class="ach-grid">
+        <div class="ach-card reveal">
+          <span class="ach-icon">🦺</span>
+          <h3>OSHA Green Card</h3>
+          <p>Construction Safety and Health Induction Course</p>
         </div>
-        <div class="skill-card reveal">
-          <h3>💻 Programming</h3>
-          <div class="skill-tags">
-            <span class="chip">Python</span>
-            <span class="chip">MATLAB</span>
-            <span class="chip">VBA</span>
-            <span class="chip">C#</span>
-            <span class="chip">HTML / CSS / JS</span>
-          </div>
+        <div class="ach-card reveal">
+          <span class="ach-icon">📐</span>
+          <h3>AutoCAD 2D Drafting</h3>
+          <p>Professional drafting certification</p>
         </div>
-        <div class="skill-card reveal">
-          <h3>📡 Seismic &amp; Analysis</h3>
-          <div class="skill-tags">
-            <span class="chip">HVSR Analysis</span>
-            <span class="chip">Geopsy</span>
-            <span class="chip">EasyHVSR</span>
-            <span class="chip">Dinver</span>
-            <span class="chip">hvsrpy</span>
-            <span class="chip">Microzonation</span>
-          </div>
+        <div class="ach-card reveal">
+          <span class="ach-icon">📋</span>
+          <h3>Project Management Fundamentals</h3>
+          <p>Certified in core project management principles</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ PROJECTS ============ -->
-  <section class="section" id="projects">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="section-tag">Projects</span>
-        <h2>Selected Work</h2>
-        <p class="section-sub">Filter by category — research, software, or engineering design.</p>
-      </div>
-      <div class="filter-bar reveal" id="projectFilters">
-        <button class="filter-chip active" data-filter="all">All</button>
-        <button class="filter-chip" data-filter="research">Research</button>
-        <button class="filter-chip" data-filter="software">Software</button>
-        <button class="filter-chip" data-filter="design">Design</button>
-      </div>
-      <div class="project-grid" id="projectGrid">
-        <article class="project-card reveal" data-category="research">
-          <div class="project-icon">🌍</div>
-          <h3>Final Year Project — Microzonation Mapping</h3>
-          <p>
-            Seismic microzonation research using ambient noise recordings to characterize local
-            site effects. (Project location omitted in compliance with Non-Disclosure Agreement.)
-          </p>
-          <ul class="project-points">
-            <li>Extracted Horizontal-to-Vertical Spectral Ratio (HVSR) data</li>
-            <li>Processed &amp; troubleshooted Geopsy, EasyHVSR, Dinver, and hvsrpy workflows</li>
-            <li>Built Python tooling to automate repetitive analysis steps</li>
-          </ul>
-          <div class="project-tags">
-            <span class="chip">Python</span>
-            <span class="chip">Geopsy</span>
-            <span class="chip">HVSR</span>
-            <span class="chip">Research</span>
-          </div>
-        </article>
-        <article class="project-card reveal" data-category="software">
-          <div class="project-icon">📊</div>
-          <h3>HVSR Analyzer — Desktop App</h3>
-          <p>
-            A friendly desktop app that turns microtremor recordings into ground-motion results —
-            no Python to install, no packages to fiddle with. It just runs.
-          </p>
-          <ul class="project-points">
-            <li>Computes H/V spectral ratio curves from many field file formats, with drag &amp; drop</li>
-            <li>Validates results against SESAME 2004 guidelines (plus SNI 1726-2019, USGS, Japan)</li>
-            <li>Inverts curves into layered soil models — Vs, Vs30, and NEHRP/SNI soil class</li>
-          </ul>
-          <div class="project-tags">
-            <span class="chip">Python</span>
-            <span class="chip">Zero third-party deps</span>
-            <span class="chip">Desktop</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/NazreenNasyuha/HVSR_Analyzer" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
-        </article>
-        <article class="project-card reveal" data-category="software">
-          <div class="project-icon">🧮</div>
-          <h3>UltCalc — Scientific &amp; Graphing Calculator</h3>
-          <p>
-            A feature-packed scientific calculator with a textbook-quality MathML expression
-            display and a full graphing calculator — in a single-page web app with zero dependencies.
-          </p>
-          <ul class="project-points">
-            <li>Scientific functions, MathML rendering, and graphing in vanilla JavaScript</li>
-            <li>No build step, no frameworks — plain HTML + CSS + ES modules</li>
-            <li>Runs anywhere: live link, single-file download, or from source</li>
-          </ul>
-          <div class="project-tags">
-            <span class="chip">HTML</span>
-            <span class="chip">CSS</span>
-            <span class="chip">JavaScript</span>
-          </div>
-          <div class="project-links">
-            <a href="https://nazreennasyuha.github.io/UtlCalculator/" target="_blank" rel="noopener">Live demo ↗</a>
-            <a href="https://github.com/NazreenNasyuha/UtlCalculator" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
-        </article>
-        <article class="project-card reveal" data-category="design">
-          <div class="project-icon">🏗️</div>
-          <h3>Integrated Design Project — Drainage &amp; Earthwork</h3>
-          <p>
-            Full drainage system and earthwork design for site development, covering hydraulics,
-            grading, and soil optimization.
-          </p>
-          <ul class="project-points">
-            <li>Designed drainage system based on site conditions and rainfall considerations</li>
-            <li>Planned earthwork including cut &amp; fill calculations</li>
-            <li>Ensured proper land leveling and optimized soil usage</li>
-          </ul>
-          <div class="project-tags">
-            <span class="chip">AutoCAD</span>
-            <span class="chip">Hydrology</span>
-            <span class="chip">Site Development</span>
-          </div>
-        </article>
-        <article class="project-card reveal" data-category="software">
-          <div class="project-icon">⚙️</div>
-          <h3>Engineering Automation Tools</h3>
-          <p>
-            Personal toolkit of scripts and small apps that automate seismic analysis and
-            day-to-day engineering workflows.
-          </p>
-          <ul class="project-points">
-            <li>HVSR analysis &amp; report automation pipelines in Python</li>
-            <li>AutoEPANET water-network automation</li>
-            <li>Web tools: binary converter, border-radius previewer</li>
-          </ul>
-          <div class="project-tags">
-            <span class="chip">Python</span>
-            <span class="chip">EPANET</span>
-            <span class="chip">Automation</span>
-            <span class="chip">Web</span>
-          </div>
-        </article>
+        <div class="ach-card reveal">
+          <span class="ach-icon">🎓</span>
+          <h3>Diploma CGPA 3.6</h3>
+          <p>UTHM · MUET Band 4.5</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ============ BLOG TEASER ============ -->
-  <section class="section section-alt" id="blog">
+  <section class="section" id="blog">
     <div class="container">
       <div class="section-head reveal">
         <span class="section-tag">Blog</span>
-        <h2>Latest from the blog</h2>
+        <h2 class="cursive big">Latest from the blog</h2>
         <p class="section-sub">Notes from the field — seismic site characterization, engineering automation, and the tools I build.</p>
       </div>
       <!-- BLOG-TEASER-START -->
@@ -420,44 +358,12 @@
     </div>
   </section>
 
-  <!-- ============ ACHIEVEMENTS ============ -->
-  <section class="section" id="achievements">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="section-tag">Achievements</span>
-        <h2>Certifications &amp; Milestones</h2>
-      </div>
-      <div class="ach-grid">
-        <div class="ach-card reveal">
-          <span class="ach-icon">🦺</span>
-          <h3>OSHA Green Card</h3>
-          <p>Construction Safety and Health Induction Course</p>
-        </div>
-        <div class="ach-card reveal">
-          <span class="ach-icon">📐</span>
-          <h3>AutoCAD 2D Drafting</h3>
-          <p>Professional drafting certification</p>
-        </div>
-        <div class="ach-card reveal">
-          <span class="ach-icon">📋</span>
-          <h3>Project Management Fundamentals</h3>
-          <p>Certified in core project management principles</p>
-        </div>
-        <div class="ach-card reveal">
-          <span class="ach-icon">🎓</span>
-          <h3>Diploma CGPA 3.6</h3>
-          <p>UTHM · MUET Band 4.5</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ CONTACT ============ -->
-  <section class="section section-alt" id="contact">
+  <section class="section" id="contact">
     <div class="container">
       <div class="section-head reveal">
         <span class="section-tag">Contact</span>
-        <h2>Let's work together</h2>
+        <h2 class="cursive big">Let's work together</h2>
         <p class="section-sub">Have a project, internship, or collaboration in mind? My inbox is always open.</p>
       </div>
       <div class="contact-grid">
@@ -522,6 +428,19 @@
       </div>
     </div>
   </footer>
+
+  <!-- ============ PROJECT MODAL ============ -->
+  <div class="modal-overlay" id="projectModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+      <span class="modal-icon" id="modalIcon">📊</span>
+      <h3 class="modal-title" id="modalTitle">Project</h3>
+      <p class="modal-desc" id="modalDesc"></p>
+      <ul class="modal-points" id="modalPoints"></ul>
+      <div class="modal-tags" id="modalTags"></div>
+      <div class="modal-links" id="modalLinks"></div>
+    </div>
+  </div>
 
   <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
 
