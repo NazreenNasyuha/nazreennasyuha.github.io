@@ -29,16 +29,16 @@
 <div align="center">
 
 ```
-    ┌─────────────────────────────────────────────┐
-    │  ┌───────┐                                  │
-    │  │ (◕‿◕) │  name: nazreen razmi             │
-    │  │  /|\  │  role: civil eng graduate        │
-    │  │  / \  │  focus: seismic site char.       │
-    │  └───────┘  status: open to opportunities   │
-    │                                             │
-    │  > there's a world inside of me that        │
-    │    i have yet to explore.                   │
-    └─────────────────────────────────────────────┘
+    ┌───────────────────────────────────────────────┐
+    │  ┌─────────┐                                  │
+    │  │ (◕‿◕) │  name: nazreen nasyuha           │
+    │  │  /|\    │  role: civil eng graduate        │
+    │  │  / \    │  focus: seismic site char.       │
+    │  └─────────┘  status: open to opportunities   │
+    │                                               │
+    │  > there's a world inside of me that          │
+    │    i have yet to explore.                     │
+    └───────────────────────────────────────────────┘
 ```
 
 </div>
@@ -61,17 +61,17 @@ i combine a solid foundation in **infrastructure design** and **structural coord
 <div align="center">
 
 ```
-    ╔═══════════════════════════════════════════════╗
-    ║                                               ║
+    ╔══════════════════════════════════════════════════════╗
+    ║                                                      ║
     ║   ███╗   ███╗ ██████╗ ███╗   ██╗██╗████████╗ ██████╗ ║
     ║   ████╗ ████║██╔═══██╗████╗  ██║██║╚══██╔══╝██╔═══██╗║
     ║   ██╔████╔██║██║   ██║██╔██╗ ██║██║   ██║   ██║   ██║║
     ║   ██║╚██╔╝██║██║   ██║██║╚██╗██║██║   ██║   ██║   ██║║
     ║   ██║ ╚═╝ ██║╚██████╔╝██║ ╚████║██║   ██║   ╚██████╔╝║
-    ║   ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝   ╚═╝    ╚═════╝║
-    ║                                               ║
-    ║          ::from the white space::              ║
-    ╚═══════════════════════════════════════════════╝
+    ║   ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝   ╚═╝    ╚═════╝ ║
+    ║                                                      ║
+    ║          ::from the white space::                    ║
+    ╚══════════════════════════════════════════════════════╝
 ```
 
 </div>
@@ -80,8 +80,6 @@ i combine a solid foundation in **infrastructure design** and **structural coord
 |:---:|:---|
 | 🎓 **education** | Bachelor of Civil Engineering · UTM (CGPA 3.2) |
 | 📜 **diploma** | Diploma in Civil Engineering · UTHM (CGPA 3.6) |
-| 💼 **experience** | Assistant Engineer Intern @ Jurutera JRK Sdn Bhd |
-| 🏗️ **internship** | Site Supervisor Intern @ Haily Construction Sdn Bhd |
 | 📍 **location** | Kulai, Johor, Malaysia |
 | 🌐 **website** | [nazreennasyuha.github.io](https://nazreennasyuha.github.io/) |
 
@@ -94,12 +92,12 @@ i combine a solid foundation in **infrastructure design** and **structural coord
 ```
     ┌──────────────────────────────────────────────────────────┐
     │                                                          │
-    │   ╔═══════════╗   ╔═══════════╗   ╔═══════════╗         │
-    │   ║  🌍 FYP   ║   ║  📊 HVSR  ║   ║  🧮 ULT   ║         │
-    │   ║ Micro-    ║   ║  Analyzer ║   ║  Calc     ║         │
-    │   ║ zonation  ║   ║  Desktop  ║   ║  Web App  ║         │
-    │   ║ Mapping   ║   ║  App      ║   ║           ║         │
-    │   ╚═══════════╝   ╚═══════════╝   ╚═══════════╝         │
+    │   ╔═══════════╗   ╔═══════════╗   ╔═══════════╗          │
+    │   ║  🌍 FYP  ║   ║  📊 HVSR  ║   ║  🧮 ULT   ║         │
+    │   ║ Micro-    ║   ║  Analyzer ║   ║  Calc     ║          │
+    │   ║ zonation  ║   ║  Desktop  ║   ║  Web App  ║          │
+    │   ║ Mapping   ║   ║  App      ║   ║           ║          │
+    │   ╚═══════════╝   ╚═══════════╝   ╚═══════════╝          │
     │                                                          │
     │         ::all that's left is what we built::             │
     └──────────────────────────────────────────────────────────┘
@@ -221,42 +219,6 @@ i combine a solid foundation in **infrastructure design** and **structural coord
 
 ---
 
-## 🎭 emotion system
-
-<div align="center">
-
-```
-         ┌─────────────┐
-         │             │
-         │    HAPPY    │
-         │    (●)      │
-         │   /    \    │
-         │  /      \   │
-         │ SAD ─── ANGRY
-         │ (●)     (●) │
-         │             │
-         │   NEUTRAL   │
-         │    (●)      │
-         │             │
-         └─────────────┘
-
-    ::just because something isn't real::
-    ::doesn't mean it isn't important::
-```
-
-</div>
-
-<div align="center">
-
-| 😊 **Happy** | 😢 **Sad** | 😠 **Angry** | 😐 **Neutral** |
-|:---:|:---:|:---:|:---:|
-| `boosts luck & speed` | `boosts defense` | `boosts attack` | `baseline` |
-| `lowers accuracy` | `lowers speed` | `lowers defense` | `no effects` |
-
-</div>
-
----
-
 ## 🏆 achievements
 
 <div align="center">
@@ -359,18 +321,14 @@ i combine a solid foundation in **infrastructure design** and **structural coord
 
 ```
     ::everything is going to be okay.::
+⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣘⠒⠀⠀⠀⢀⣤⢦⠀⠀⠀⢀⣤⠀⠀
+⠀⠀⠀⠋⠰⠆⠀⣰⡟⠁⢈⣧⣀⣴⠋⠙⡄⠀
+⠀⠀⠀⠀⢀⣴⣿⣿⣤⣴⣿⣿⣿⣿⣷⣤⣇⠀
+⠀⣀⣠⣀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄
+⣿⣿⣿⣿⣿⣿⣿⣿⣧⣤⣤⣼⣿⣧⣤⣤⣿⠃
+⠉⠁⠀⠀⠈⠙⠻⠿⢿⣿⣿⣿⣿⣿⠿⠿⠛⠀
 
-              ⠀⠀⠀⠀⠀⣀⣤⣤⣶⣶⣶⣶⣤⣤⣀⠀⠀⠀⠀⠀⠀
-            ⠀⠀⠀⣠⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀
-           ⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡀⠀⠀⠀
-          ⠀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⠀⠀
-         ⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀⠀
-        ⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⠀
-       ⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀
-      ⢀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇
-     ⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-    ⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-   ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
 ```
 
 ![Visitors](https://komarev.com/ghpvc/?username=NazreenNasyuha&color=9370DB&style=for-the-badge&label=PROFILE+VISITORS)
