@@ -1,116 +1,381 @@
-# Nazreen Razmi — Personal Website
-
-A static single-page portfolio + blog, hosted on GitHub Pages at
-**https://nazreennasyuha.github.io/**
-
-No build tools, no frameworks, no server — plain HTML, CSS, and a little
-vanilla JavaScript. It just works.
-
-## Structure
+<div align="center">
 
 ```
-my-website/
-├── index.html          → homepage (two-clipboard canvas, education, achievements, blog teaser, contact)
-├── style.css           → the whole theme (Midnight dark default + Morning light)
-├── script.js           → theme toggle, rotator, scrollspy, filters, modal, copy, contact form + easter eggs
-├── build-blog.js       → turns markdown posts into the blog pages + homepage teaser (node build-blog.js)
-├── assets/
-│   ├── profile.svg     → monogram avatar (shown until you add a real photo)
-│   └── textures/       → paper & wood photo textures (light + dark variants)
-└── blog/
-    ├── index.html      → blog listing (generated — don't edit by hand)
-    └── posts/
-        ├── *.md        → ✍️ write posts here in markdown
-        └── *.html      → generated post pages (don't edit by hand)
+ ██████╗ ████████╗██╗███╗   ███╗██╗ ██████╗ █████╗ ███╗   ██╗
+██╔═══██╗╚══██╔══╝██║████╗ ████║██║██╔════╝██╔══██╗████╗  ██║
+██║   ██║   ██║   ██║██╔████╔██║██║██║     ███████║██╔██╗ ██║
+██║   ██║   ██║   ██║██║╚██╔╝██║██║██║     ██╔══██║██║╚██╗██║
+╚██████╔╝   ██║   ██║██║ ╚═╝ ██║██║╚██████╗██║  ██║██║ ╚████║
+ ╚═════╝    ╚═╝   ╚═╝╚═╝     ╚═╝╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═══╝
 ```
 
-## Themes — Midnight & Morning
+```css
+/* ========================================
+   WELCOME TO WHITE SPACE.
+   ======================================== */
 
-The site defaults to the **Midnight Collection** (dark, cozy midnight blues)
-and can switch to the **Morning Collection** (light, airy dusty blues) with
-the 🌙/☀️ toggle in the navbar. The choice is remembered in `localStorage`,
-and transitions are smooth (0.5s).
-
-Both themes use real **photo textures** (`assets/textures/`) — walnut wood
-grain for the clipboards and fiber paper for the sheets — with separate
-light/dark variants.
-
-## Interactive features
-
-- **Theme toggle** — Midnight ↔ Morning, remembered across visits
-- **Typing rotator** — the hero headline cycles through your focus areas
-- **Scrollspy** — the navbar highlights the section you're viewing
-- **Project filters** — Research / Software / Design chips
-- **Project modals** — click a project tile for a full preview
-- **Copy-to-clipboard** — ⧉ buttons on email & phone in the contact sheet
-- **Back-to-top** button after scrolling
-
-### Hidden easter eggs 🥚
-
-1. **Seismic activity** — click the "Hi, I'm Nazreen" intro card **5 times
-   quickly** and the whole section shakes like an earthquake, then shows a
-   "Seismic activity detected!" toast. (A nod to your HVSR research.)
-2. **Cloud cursor & trail** — on desktop, the cursor becomes a little cloud
-   that leaves a fading trail of dots. (Disabled for touch devices and
-   `prefers-reduced-motion`.)
-3. **Master Engineer Block** — a Minecraft-style dirt block in the footer.
-   Click it: it plays a click sound. Click it **50 times** and a Minecraft-
-   style "Achievement unlocked: Master Engineer" popup appears.
-
-## Contact form (Web3Forms)
-
-The form currently falls back to opening the visitor's email app. To receive
-submissions directly in your inbox:
-
-1. Go to **https://web3forms.com/** and enter `nazreennasyuha@gmail.com`
-   to get your **access key** (free, no account needed).
-2. Open `script.js` and paste the key here:
-
-```js
-const WEB3FORMS_ACCESS_KEY = ""; // <-- paste your key here
+ ::there is a world inside of me::
+ ::that i have yet to explore::
 ```
 
-## Adding your photo
+![Typing SVG](https://readme-typing-svg.demolab.com?font=Courier+New&weight=600&size=28&duration=2500&pause=1000&color=9370DB&center=true&vCenter=true&multiline=true&repeat=true&width=700&height=100&lines=Hi%2C+I'm+Nazreen+%F0%9F%91%BB;Civil+Engineering+Graduate+%C2%B7+Seismic+Researcher;Everything+is+going+to+be+okay.)
 
-Drop a photo at `assets/profile.jpg` (square works best). The polaroid in
-the hero picks it up automatically — until then it shows the `NR` monogram.
+</div>
 
-## Writing a blog post
-
-1. Create a new file in `blog/posts/`, e.g. `blog/posts/my-new-post.md`.
-2. Start it with this front matter:
-
-```markdown
 ---
-title: "My post title"
-date: 2026-08-15
-tags: [python, hvsr]
+
+## 🌑 about me
+
+<div align="center">
+
+```
+    ┌─────────────────────────────────────────────┐
+    │  ┌───────┐                                  │
+    │  │ (◕‿◕) │  name: nazreen razmi             │
+    │  │  /|\  │  role: civil eng graduate        │
+    │  │  / \  │  focus: seismic site char.       │
+    │  └───────┘  status: open to opportunities   │
+    │                                             │
+    │  > there's a world inside of me that        │
+    │    i have yet to explore.                   │
+    └─────────────────────────────────────────────┘
+```
+
+</div>
+
+i combine a solid foundation in **infrastructure design** and **structural coordination** with hands-on experience in **seismic microzonation research** — and i build tools that make engineering workflows faster, smarter, and repeatable.
+
+<div align="center">
+
+[![Email](https://img.shields.io/badge/📧-Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:nazreennasyuha@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/💼-LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/nazreenrazmi/)
+[![GitHub](https://img.shields.io/badge/🐙-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/NazreenNasyuha)
+[![Website](https://img.shields.io/badge/🌐-Website-4A6F8F?style=for-the-badge&logo=googlechrome&logoColor=white)](https://nazreennasyuha.github.io/)
+
+</div>
+
 ---
+
+## 🗡️ about my headspace
+
+<div align="center">
+
+```
+    ╔═══════════════════════════════════════════════╗
+    ║                                               ║
+    ║   ███╗   ███╗ ██████╗ ███╗   ██╗██╗████████╗ ██████╗ ║
+    ║   ████╗ ████║██╔═══██╗████╗  ██║██║╚══██╔══╝██╔═══██╗║
+    ║   ██╔████╔██║██║   ██║██╔██╗ ██║██║   ██║   ██║   ██║║
+    ║   ██║╚██╔╝██║██║   ██║██║╚██╗██║██║   ██║   ██║   ██║║
+    ║   ██║ ╚═╝ ██║╚██████╔╝██║ ╚████║██║   ██║   ╚██████╔╝║
+    ║   ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝   ╚═╝    ╚═════╝║
+    ║                                               ║
+    ║          ::from the white space::              ║
+    ╚═══════════════════════════════════════════════╝
 ```
 
-3. Write the rest in markdown (headings, lists, code blocks, links, quotes all supported).
-4. Rebuild the blog — this also refreshes the "Latest from the blog" teaser on the homepage:
+</div>
 
-```bash
-node build-blog.js
+| 🌙 **category** | 📖 **details** |
+|:---:|:---|
+| 🎓 **education** | Bachelor of Civil Engineering · UTM (CGPA 3.2) |
+| 📜 **diploma** | Diploma in Civil Engineering · UTHM (CGPA 3.6) |
+| 💼 **experience** | Assistant Engineer Intern @ Jurutera JRK Sdn Bhd |
+| 🏗️ **internship** | Site Supervisor Intern @ Haily Construction Sdn Bhd |
+| 📍 **location** | Kulai, Johor, Malaysia |
+| 🌐 **website** | [nazreennasyuha.github.io](https://nazreennasyuha.github.io/) |
+
+---
+
+## 📂 projects
+
+<div align="center">
+
+```
+    ┌──────────────────────────────────────────────────────────┐
+    │                                                          │
+    │   ╔═══════════╗   ╔═══════════╗   ╔═══════════╗         │
+    │   ║  🌍 FYP   ║   ║  📊 HVSR  ║   ║  🧮 ULT   ║         │
+    │   ║ Micro-    ║   ║  Analyzer ║   ║  Calc     ║         │
+    │   ║ zonation  ║   ║  Desktop  ║   ║  Web App  ║         │
+    │   ║ Mapping   ║   ║  App      ║   ║           ║         │
+    │   ╚═══════════╝   ╚═══════════╝   ╚═══════════╝         │
+    │                                                          │
+    │         ::all that's left is what we built::             │
+    └──────────────────────────────────────────────────────────┘
 ```
 
-5. Commit and push — GitHub Pages updates automatically.
+</div>
 
-## Deployment
+<table align="center">
+  <tr>
+    <td align="center" width="48%">
+      <h3>🌍 Microzonation Mapping</h3>
+      <p><i>Final Year Project</i></p>
+      <p>Seismic microzonation mapping — dividing a region into zones based on local soil conditions using HVSR analysis and 1D inversion.</p>
+      <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
+      <img src="https://img.shields.io/badge/Geopsy-4A6F8F?style=for-the-badge" alt="Geopsy"/>
+      <img src="https://img.shields.io/badge/Research-9370DB?style=for-the-badge" alt="Research"/>
+    </td>
+    <td width="4%"></td>
+    <td align="center" width="48%">
+      <h3>📊 HVSR Analyzer</h3>
+      <p><i>Desktop Application</i></p>
+      <p>Zero-dependency desktop app that takes raw microtremor recordings and produces reliable H/V curves — no Python install needed.</p>
+      <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
+      <img src="https://img.shields.io/badge/Desktop-ff8c42?style=for-the-badge" alt="Desktop"/>
+      <img src="https://img.shields.io/badge/Automation-90ee90?style=for-the-badge" alt="Automation"/>
+    </td>
+  </tr>
+  <tr><td colspan="3"><br/></td></tr>
+  <tr>
+    <td align="center" width="48%">
+      <h3>🧮 UltCalc</h3>
+      <p><i>Calculator Web App</i></p>
+      <p>Engineering calculator web application for quick calculations in the field and during design work.</p>
+      <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML"/>
+      <img src="https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS"/>
+      <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JS"/>
+    </td>
+    <td width="4%"></td>
+    <td align="center" width="48%">
+      <h3>🏗️ Drainage & Earthwork</h3>
+      <p><i>Integrated Design Project</i></p>
+      <p>Comprehensive drainage design and earthwork calculations — AutoCAD drawings, hydraulic analysis, and site coordination.</p>
+      <img src="https://img.shields.io/badge/AutoCAD-0696D7?style=for-the-badge&logo=autodesk&logoColor=white" alt="AutoCAD"/>
+      <img src="https://img.shields.io/badge/EPANET-4dd9e8?style=for-the-badge" alt="EPANET"/>
+      <img src="https://img.shields.io/badge/Design-dc143c?style=for-the-badge" alt="Design"/>
+    </td>
+  </tr>
+</table>
 
-The site is deployed from the `main` branch of the
-`nazreennasyuha.github.io` repository via GitHub Pages.
+---
 
-```bash
-git add -A
-git commit -m "Update site"
-git push origin main
+## 🛠️ tools i use
+
+<div align="center">
+
+```
+    ┌──────────────────────────────────────────────────────────┐
+    │                                                          │
+    │   ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐     │
+    │   │ Py  │ │ AC  │ │ Rv  │ │ EP  │ │ Gs  │ │ Dn  │     │
+    │   │thon │ │CAD  │ │evit │ │ANET │ │eopsy│ │inver│     │
+    │   └─────┘ └─────┘ └─────┘ └─────┘ └─────┘ └─────┘     │
+    │                                                          │
+    │   ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐                      │
+    │   │ ML  │ │ Of  │ │ Cn  │ │ </> │                      │
+    │   │ATLAB│ │fice │ │anva │ │HTML │                      │
+    │   └─────┘ └─────┘ └─────┘ └─────┘                      │
+    │                                                          │
+    │     ::tools are just extensions of ourselves::           │
+    └──────────────────────────────────────────────────────────┘
 ```
 
-## Editing blog post pages
+</div>
 
-The blog pages are **generated** by `build-blog.js` from the `.md` files in
-`blog/posts/`. Always edit the `.md`, then re-run `node build-blog.js`.
-The homepage blog teaser is also generated (between the `BLOG-TEASER-START`
-and `BLOG-TEASER-END` comments in `index.html`) — don't edit it by hand.
+<div align="center">
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![AutoCAD](https://img.shields.io/badge/AutoCAD-0696D7?style=for-the-badge&logo=autodesk&logoColor=white)
+![Revit](https://img.shields.io/badge/Revit-0696D7?style=for-the-badge&logo=autodesk&logoColor=white)
+![MATLAB](https://img.shields.io/badge/MATLAB-FF6C2C?style=for-the-badge&logo=mathworks&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![MS Office](https://img.shields.io/badge/MS_Office-D83B01?style=for-the-badge&logo=microsoftoffice&logoColor=white)
+
+</div>
+
+---
+
+## 📊 github stats
+
+<div align="center">
+
+```
+    ╔══════════════════════════════════════════════╗
+    ║                                              ║
+    ║   ::beneath the surface, there is always::   ║
+    ║   ::more than what meets the eye::           ║
+    ║                                              ║
+    ╚══════════════════════════════════════════════╝
+```
+
+</div>
+
+<div align="center">
+
+<img src="https://github-readme-stats.vercel.app/api?username=NazreenNasyuha&show_icons=true&theme=dark&bg_color=000000&title_color=9370DB&text_color=FFFFFF&icon_color=9370DB&border_color=333333&hide_border=true" width="48%"/>
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=NazreenNasyuha&theme=dark&background=000000&ring=9370DB&fire=dc143c&currStreakLabel=9370DB&sideLabels=FFFFFF&currStreakNum=FFFFFF&sideNums=AAAAAA&border=333333&hide_border=true" width="48%"/>
+
+</div>
+
+<div align="center">
+
+![Nazreen's GitHub stats](https://github-readme-stats.vercel.app/api?username=NazreenNasyuha&show_icons=true&theme=radical&hide_border=true&count_private=true)
+
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=NazreenNasyuha&layout=compact&theme=dark&bg_color=000000&title_color=9370DB&text_color=FFFFFF&border_color=333333&hide_border=true)
+
+</div>
+
+---
+
+## 🎭 emotion system
+
+<div align="center">
+
+```
+         ┌─────────────┐
+         │             │
+         │    HAPPY    │
+         │    (●)      │
+         │   /    \    │
+         │  /      \   │
+         │ SAD ─── ANGRY
+         │ (●)     (●) │
+         │             │
+         │   NEUTRAL   │
+         │    (●)      │
+         │             │
+         └─────────────┘
+
+    ::just because something isn't real::
+    ::doesn't mean it isn't important::
+```
+
+</div>
+
+<div align="center">
+
+| 😊 **Happy** | 😢 **Sad** | 😠 **Angry** | 😐 **Neutral** |
+|:---:|:---:|:---:|:---:|
+| `boosts luck & speed` | `boosts defense` | `boosts attack` | `baseline` |
+| `lowers accuracy` | `lowers speed` | `lowers defense` | `no effects` |
+
+</div>
+
+---
+
+## 🏆 achievements
+
+<div align="center">
+
+```
+    ┌──────────────────────────────────────────────────────────┐
+    │                                                          │
+    │   ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐  │
+    │   │  🦺      │ │  📐      │ │  📋      │ │  🎓      │  │
+    │   │  OSHA    │ │  AutoCAD │ │  Project │ │  CGPA    │  │
+    │   │  Green   │ │  2D      │ │  Mgmt    │ │  3.6     │  │
+    │   │  Card    │ │  Drafting│ │  Fund.   │ │  UTHM    │  │
+    │   └──────────┘ └──────────┘ └──────────┘ └──────────┘  │
+    │                                                          │
+    │   ::we only see what we choose to see::                  │
+    └──────────────────────────────────────────────────────────┘
+```
+
+</div>
+
+<div align="center">
+
+| Achievement | Description |
+|:---:|:---|
+| 🦺 | **OSHA Green Card** — Construction Safety & Health Induction |
+| 📐 | **AutoCAD 2D Drafting** — Professional drafting certification |
+| 📋 | **Project Management Fundamentals** — Core PM principles |
+| 🎓 | **Diploma CGPA 3.6** — UTHM · MUET Band 4.5 |
+
+</div>
+
+---
+
+## 📝 latest from the blog
+
+<div align="center">
+
+```
+    ╔══════════════════════════════════════════════╗
+    ║                                              ║
+    ║   ::notes from the field::                   ║
+    ║   ::seismic site characterization::          ║
+    ║   ::engineering automation::                 ║
+    ║   ::and the tools i build::                  ║
+    ║                                              ║
+    ╚══════════════════════════════════════════════╝
+```
+
+</div>
+
+<div align="center">
+
+📰 [Building HVSR Analyzer: a zero-dependency desktop app](https://nazreennasyuha.github.io/blog/posts/building-hvsr-analyzer.html)
+`python` `hvsr` `desktop` `automation`
+
+📰 [From field recordings to a soil model: my microzonation FYP journey](https://nazreennasyuha.github.io/blog/posts/from-field-recordings-to-soil-model.html)
+`fyp` `microzonation` `hvsr` `research`
+
+📰 [Two internships, two very different sides of construction](https://nazreennasyuha.github.io/blog/posts/two-internships-two-sides-of-construction.html)
+`internship` `construction` `autocad` `site-work`
+
+</div>
+
+---
+
+## 💌 contact
+
+<div align="center">
+
+```
+    ┌──────────────────────────────────────────────────────────┐
+    │                                                          │
+    │   ┌────────────────────────────────────────────────┐     │
+    │   │  ✉️  nazreennasyuha@gmail.com                  │     │
+    │   │  📞  +60 18-777 1460                          │     │
+    │   │  📍  Kulai, Johor, Malaysia                    │     │
+    │   │  💼  linkedin.com/in/nazreenrazmi              │     │
+    │   │  🐙  github.com/NazreenNasyuha                 │     │
+    │   └────────────────────────────────────────────────┘     │
+    │                                                          │
+    │   ::if you're reading this, come talk to me::            │
+    │                                                          │
+    └──────────────────────────────────────────────────────────┘
+```
+
+</div>
+
+<div align="center">
+
+[![Email](https://img.shields.io/badge/✉️-Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:nazreennasyuha@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/💼-LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/nazreenrazmi/)
+[![GitHub](https://img.shields.io/badge/🐙-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/NazreenNasyuha)
+[![Website](https://img.shields.io/badge/🌐-Website-4A6F8F?style=for-the-badge&logo=googlechrome&logoColor=white)](https://nazreennasyuha.github.io/)
+
+</div>
+
+---
+
+<div align="center">
+
+```
+    ::everything is going to be okay.::
+
+              ⠀⠀⠀⠀⠀⣀⣤⣤⣶⣶⣶⣶⣤⣤⣀⠀⠀⠀⠀⠀⠀
+            ⠀⠀⠀⣠⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀
+           ⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡀⠀⠀⠀
+          ⠀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⠀⠀
+         ⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀⠀
+        ⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⠀
+       ⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀
+      ⢀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇
+     ⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+    ⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+   ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+```
+
+![Visitors](https://komarev.com/ghpvc/?username=NazreenNasyuha&color=9370DB&style=for-the-badge&label=PROFILE+VISITORS)
+
+*"There is a world inside of me that I have yet to explore."*
+— OMORI
+
+</div>
