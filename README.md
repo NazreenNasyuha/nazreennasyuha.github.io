@@ -202,20 +202,21 @@ i combine a solid foundation in **infrastructure design** and **structural coord
 
 </div>
 
-<div align="center">
+<table align="center">
+<tr>
+<td align="center"><a href="https://github.com/NazreenNasyuha"><img src="https://github-readme-stats.vercel.app/api?username=NazreenNasyuha&show_icons=true&theme=dark&bg_color=000000&title_color=9370DB&text_color=FFFFFF&icon_color=9370DB&hide_border=true" alt="GitHub Stats"/></a></td>
+<td align="center"><a href="https://github.com/NazreenNasyuha"><img src="https://github-readme-streak-stats.herokuapp.com/?user=NazreenNasyuha&theme=dark&background=000000&ring=9370DB&fire=dc143c&currStreakLabel=9370DB&sideLabels=FFFFFF&currStreakNum=FFFFFF&sideNums=AAAAAA&hide_border=true" alt="Streak Stats"/></a></td>
+</tr>
+</table>
 
-<img src="https://github-readme-stats.vercel.app/api?username=NazreenNasyuha&show_icons=true&theme=dark&bg_color=000000&title_color=9370DB&text_color=FFFFFF&icon_color=9370DB&border_color=333333&hide_border=true" width="48%"/>
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=NazreenNasyuha&theme=dark&background=000000&ring=9370DB&fire=dc143c&currStreakLabel=9370DB&sideLabels=FFFFFF&currStreakNum=FFFFFF&sideNums=AAAAAA&border=333333&hide_border=true" width="48%"/>
-
-</div>
-
-<div align="center">
-
-![Nazreen's GitHub stats](https://github-readme-stats.vercel.app/api?username=NazreenNasyuha&show_icons=true&theme=radical&hide_border=true&count_private=true)
-
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=NazreenNasyuha&layout=compact&theme=dark&bg_color=000000&title_color=9370DB&text_color=FFFFFF&border_color=333333&hide_border=true)
-
-</div>
+<table align="center">
+<tr>
+<td align="center"><a href="https://github.com/NazreenNasyuha"><img src="https://github-readme-stats.vercel.app/api?username=NazreenNasyuha&show_icons=true&theme=radical&hide_border=true&count_private=true" alt="Nazreen's GitHub stats"/></a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://github.com/NazreenNasyuha"><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=NazreenNasyuha&layout=compact&theme=dark&bg_color=000000&title_color=9370DB&text_color=FFFFFF&hide_border=true" alt="Top Languages"/></a></td>
+</tr>
+</table>
 
 ---
 
@@ -321,13 +322,6 @@ i combine a solid foundation in **infrastructure design** and **structural coord
 
 ```
     ::everything is going to be okay.::
-⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⣘⠒⠀⠀⠀⢀⣤⢦⠀⠀⠀⢀⣤⠀⠀
-⠀⠀⠀⠋⠰⠆⠀⣰⡟⠁⢈⣧⣀⣴⠋⠙⡄⠀
-⠀⠀⠀⠀⢀⣴⣿⣿⣤⣴⣿⣿⣿⣿⣷⣤⣇⠀
-⠀⣀⣠⣀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄
-⣿⣿⣿⣿⣿⣿⣿⣿⣧⣤⣤⣼⣿⣧⣤⣤⣿⠃
-⠉⠁⠀⠀⠈⠙⠻⠿⢿⣿⣿⣿⣿⣿⠿⠿⠛⠀
 
 ```
 
