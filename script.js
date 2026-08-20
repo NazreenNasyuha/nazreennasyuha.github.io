@@ -20,9 +20,9 @@
   }
 
   // Default is dark (Midnight Collection)
-  let savedTheme = "dark";
+  let savedTheme = "light";
   try {
-    savedTheme = localStorage.getItem(THEME_KEY) || "dark";
+    savedTheme = localStorage.getItem(THEME_KEY) || "light";
   } catch (e) {
     /* ignore */
   }

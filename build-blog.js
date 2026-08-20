@@ -252,7 +252,7 @@ function pageShell(prefix, title, body, opts = {}) {
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Caveat:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="${prefix}style.css" />
 </head>
-<body data-theme="dark">
+<body data-theme="light">
   <header class="nav">
     <div class="nav-inner container">
 ${navHtml(prefix)}
@@ -287,8 +287,8 @@ ${body}
       /* theme toggle (Midnight default, Morning light) */
       var body = document.body;
       var tt = document.getElementById("themeToggle");
-      var saved = "dark";
-      try { saved = localStorage.getItem("nz-theme") || "dark"; } catch (e) {}
+      var saved = "light";
+      try { saved = localStorage.getItem("nz-theme") || "light"; } catch (e) {}
       body.setAttribute("data-theme", saved);
       if (tt) {
         tt.addEventListener("click", function () {
