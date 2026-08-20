@@ -481,8 +481,8 @@
     }, 1600);
   }
 
-  document.querySelectorAll(".copy-btn").forEach(function (btn) {
-    btn.addEventListener("click", function () {
+  document.querySelectorAll(".copy-btn, [data-copy]").forEach(function (btn) {
+    btn.addEventListener("click", function (e) { if (btn.hasAttribute("data-copy")) e.preventDefault();
       const text = btn.getAttribute("data-copy") || "";
       copyText(text)
         .then(showToast)

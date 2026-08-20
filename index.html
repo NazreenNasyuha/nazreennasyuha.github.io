@@ -7,16 +7,17 @@
   <title>Nazreen Razmi — Civil Engineer & Seismic Researcher</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Caveat:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Caveat:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body data-theme="light">
 
   <!-- ============ NAVBAR ============ -->
   <header class="nav">
-    <div class="nav-inner container">
-      <a href="index.html" class="logo" aria-label="PHOTO_ALBUM">
-        <img src="assets/PHOTO_ALBUM.webp" alt="PHOTO_ALBUM" class="logo-img" />
+    <div class="nav-inner">
+      <a href="index.html" class="logo" aria-label="Home">
+        <img src="assets/PHOTO_ALBUM.webp" alt="NR" class="logo-img"
+             onerror="this.onerror=null; this.style.display='none'" />
       </a>
       <nav class="nav-links" id="navLinks">
         <a href="#about">About</a>
@@ -29,7 +30,7 @@
         <a href="#contact" class="nav-cta">Contact</a>
       </nav>
       <div class="nav-actions">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark / light theme" title="Toggle theme">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
           <span class="theme-icon theme-moon">🌙</span>
           <span class="theme-icon theme-sun">☀️</span>
         </button>
@@ -40,201 +41,153 @@
     </div>
   </header>
 
-  <!-- ============ PORTFOLIO CANVAS (two clipboards) ============ -->
+  <!-- ============ MAIN BOARD ============ -->
   <main class="portfolio-canvas">
-    <div class="canvas-bg" aria-hidden="true">
-      <span class="moon"></span>
-      <span class="cloud cloud-1"></span>
-      <span class="cloud cloud-2"></span>
-      <div class="dot-grid"></div>
-    </div>
+    <div class="board">
 
-    <!-- ===== Left clipboard: intro + contact ===== -->
-    <section class="clipboard left-clipboard" id="about">
-      <div class="wood-grain" aria-hidden="true"></div>
-      <div class="clip top-clip" aria-hidden="true"></div>
+      <!-- ===== TOP ROW: ID Card + Lined Paper ===== -->
+      <div class="top-row">
 
-      <div class="paper intro-paper" id="seismic-section">
-        <div class="polaroid reveal">
-          <!-- Real photo at assets/profile.jpeg — falls back to the monogram if missing -->
-          <img src="assets/profile.jpeg" alt="Nazreen Razmi"
-               onerror="this.onerror=null; this.src='assets/profile.svg';" />
-          <p class="polaroid-caption">Nazreen · Kulai, Johor ✨</p>
+        <!-- ID Card / Polaroid -->
+        <div class="id-card paper-element" id="about">
+          <div class="photo-area">
+            <img src="assets/profile.jpeg" alt="Nazreen Razmi"
+                 onerror="this.onerror=null; this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--paper-alt);font-size:2.5rem;font-family:var(--pixel-font);color:var(--accent)\'>NR</div>'" />
+          </div>
+          <div class="contact-notepad">
+            <div class="contact-label">Contact</div>
+            <div class="contact-line">
+              <span class="c-icon">📞</span>
+              <a href="tel:+60187771460" id="phoneCopy" data-copy="+60187771460">+62-81227530801</a>
+            </div>
+            <div class="contact-line">
+              <span class="c-icon">✉️</span>
+              <a href="mailto:nazreennasyuha@gmail.com" id="emailCopy" data-copy="nazreennasyuha@gmail.com">nazreennasyuha@gmail.com</a>
+            </div>
+            <div class="contact-line">
+              <span class="c-icon">📍</span>
+              <span>Kulai, Johor</span>
+            </div>
+            <div class="social-row">
+              <a href="https://www.linkedin.com/in/nazreenrazmi/" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.24 8.31h4.52V23H.24V8.31Zm7.38 0h4.33v2h.06c.6-1.14 2.08-2.34 4.28-2.34 4.57 0 5.41 3.01 5.41 6.92V23h-4.51v-7.12c0-1.7-.03-3.88-2.37-3.88-2.37 0-2.73 1.85-2.73 3.76V23H7.62V8.31Z"/></svg>
+              </a>
+              <a href="https://github.com/NazreenNasyuha" target="_blank" rel="noopener" aria-label="GitHub" class="social-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.17c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.73.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.78 1.05.78 2.12v3.14c0 .3.2.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+              </a>
+              <a href="mailto:nazreennasyuha@gmail.com" aria-label="Email" class="social-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              </a>
+            </div>
+            <div class="lord-tag">🐙 NazreenNasyuha</div>
+          </div>
         </div>
 
-        <p class="intro-script reveal">Hi, I'm</p>
-        <h1 class="intro-name reveal">
-          Nazreen <span class="accent">Razmi</span>
-        </h1>
-        <p class="intro-role reveal">
-          Civil Engineering Graduate · <span class="rotator" id="rotator">Seismic Site Characterization</span>
-        </p>
-        <p class="intro-bio reveal">
-          I combine a solid foundation in infrastructure design and structural coordination with
-          hands-on experience in seismic microzonation research — and I build tools that make
-          engineering workflows faster, smarter, and repeatable.
-        </p>
+        <!-- Lined Notebook Paper -->
+        <div class="lined-paper paper-element" id="seismic-section">
+          <p class="intro-greeting reveal">Hi, I'm</p>
+          <h1 class="intro-name reveal">Nazreen Razmi</h1>
+          <p class="intro-role reveal">
+            Civil Engineering Graduate · <span class="rotator" id="rotator">Seismic Site Characterization</span>
+          </p>
+          <p class="intro-bio reveal">
+            I combine a solid foundation in <strong>infrastructure design</strong> and <strong>structural coordination</strong> with
+            hands-on experience in <strong>seismic microzonation research</strong> — and I build tools that make
+            engineering workflows faster, smarter, and repeatable.
+          </p>
+          <div class="lined-socials reveal">
+            <a href="https://www.linkedin.com/in/nazreenrazmi/" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-link">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.24 8.31h4.52V23H.24V8.31Zm7.38 0h4.33v2h.06c.6-1.14 2.08-2.34 4.28-2.34 4.57 0 5.41 3.01 5.41 6.92V23h-4.51v-7.12c0-1.7-.03-3.88-2.37-3.88-2.37 0-2.73 1.85-2.73 3.76V23H7.62V8.31Z"/></svg>
+            </a>
+            <a href="https://github.com/NazreenNasyuha" target="_blank" rel="noopener" aria-label="GitHub" class="social-link">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.17c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.73.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.78 1.05.78 2.12v3.14c0 .3.2.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+            </a>
+            <a href="mailto:nazreennasyuha@gmail.com" aria-label="Email" class="social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            </a>
+          </div>
+        </div>
       </div>
 
-      <div class="paper contact-paper reveal">
-        <h2 class="paper-heading cursive">Contact</h2>
-        <div class="contact-list">
-          <div class="contact-item">
-            <span class="contact-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-            </span>
-            <span class="contact-text">
-              <small>Email</small>
-              <strong>nazreennasyuha@gmail.com</strong>
-            </span>
-            <button class="copy-btn" data-copy="nazreennasyuha@gmail.com" aria-label="Copy email">⧉</button>
-          </div>
-          <div class="contact-item">
-            <span class="contact-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>
-            </span>
-            <span class="contact-text">
-              <small>Phone</small>
-              <strong>+60 18-777 1460</strong>
-            </span>
-            <button class="copy-btn" data-copy="+60187771460" aria-label="Copy phone">⧉</button>
-          </div>
-          <div class="contact-item">
-            <span class="contact-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
-            </span>
-            <span class="contact-text">
-              <small>Location</small>
-              <strong>Kulai, Johor, Malaysia</strong>
-            </span>
-          </div>
-          <div class="contact-item">
-            <span class="contact-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
-            </span>
-            <span class="contact-text">
-              <small>Status</small>
-              <strong>Open to opportunities</strong>
-            </span>
-          </div>
-        </div>
+      <!-- ===== BOTTOM PAPER: Projects + Experience ===== -->
+      <div class="bottom-paper paper-element">
 
-        <div class="socials">
-          <a href="https://www.linkedin.com/in/nazreenrazmi/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-link">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.24 8.31h4.52V23H.24V8.31Zm7.38 0h4.33v2h.06c.6-1.14 2.08-2.34 4.28-2.34 4.57 0 5.41 3.01 5.41 6.92V23h-4.51v-7.12c0-1.7-.03-3.88-2.37-3.88-2.37 0-2.73 1.85-2.73 3.76V23H7.62V8.31Z"/></svg>
-          </a>
-          <a href="https://github.com/NazreenNasyuha" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-link">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.17c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.73.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.78 1.05.78 2.12v3.14c0 .3.2.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
-          </a>
-          <a href="mailto:nazreennasyuha@gmail.com" aria-label="Email" class="social-link">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-          </a>
-        </div>
-        <span class="toast" id="copyToast">Copied!</span>
-      </div>
-    </section>
-
-    <!-- ===== Right clipboard: projects + experience + tools ===== -->
-    <section class="clipboard right-clipboard">
-      <div class="wood-grain" aria-hidden="true"></div>
-      <div class="clip binder-clip" aria-hidden="true"></div>
-
-      <!-- Projects -->
-      <div class="paper projects-paper" id="projects">
-        <div class="paper-head">
-          <h2 class="cursive">My Project Recently</h2>
+        <!-- Projects -->
+        <div class="projects-section" id="projects">
+          <div class="section-title">📂</div>
+          <h2 class="section-subtitle">My Project Recently</h2>
           <div class="filter-bar" id="projectFilters">
             <button class="filter-chip active" data-filter="all">All</button>
             <button class="filter-chip" data-filter="research">Research</button>
             <button class="filter-chip" data-filter="software">Software</button>
             <button class="filter-chip" data-filter="design">Design</button>
           </div>
+
+          <div class="project-grid" id="projectGrid">
+            <button class="project-tile reveal" data-category="research" data-project="fyp">
+              <span class="tile-img tile-fyp">🌍</span>
+              <div class="tile-overlay">
+                <span class="tile-title">Microzonation Mapping</span>
+                <span class="tile-tag">Final Year Project</span>
+              </div>
+            </button>
+            <button class="project-tile reveal" data-category="software" data-project="hvsr">
+              <span class="tile-img tile-hvsr">📊</span>
+              <div class="tile-overlay">
+                <span class="tile-title">HVSR Analyzer</span>
+                <span class="tile-tag">Desktop App</span>
+              </div>
+            </button>
+            <button class="project-tile reveal" data-category="software" data-project="ultcalc">
+              <span class="tile-img tile-ultcalc">🧮</span>
+              <div class="tile-overlay">
+                <span class="tile-title">UltCalc</span>
+                <span class="tile-tag">Calculator Web App</span>
+              </div>
+            </button>
+            <button class="project-tile reveal" data-category="design" data-project="idp">
+              <span class="tile-img tile-idp">🏗️</span>
+              <div class="tile-overlay">
+                <span class="tile-title">Drainage &amp; Earthwork</span>
+                <span class="tile-tag">Integrated Design Project</span>
+              </div>
+            </button>
+          </div>
         </div>
 
-        <div class="project-grid" id="projectGrid">
-          <button class="project-tile reveal" data-category="research" data-project="fyp">
-            <span class="tile-art tile-fyp">🌍</span>
-            <span class="tile-title">Microzonation Mapping</span>
-            <span class="tile-tag">Final Year Project</span>
-          </button>
-          <button class="project-tile reveal" data-category="software" data-project="hvsr">
-            <span class="tile-art tile-hvsr">📊</span>
-            <span class="tile-title">HVSR Analyzer</span>
-            <span class="tile-tag">Desktop App</span>
-          </button>
-          <button class="project-tile reveal" data-category="software" data-project="ultcalc">
-            <span class="tile-art tile-ultcalc">🧮</span>
-            <span class="tile-title">UltCalc</span>
-            <span class="tile-tag">Calculator Web App</span>
-          </button>
-          <button class="project-tile reveal" data-category="design" data-project="idp">
-            <span class="tile-art tile-idp">🏗️</span>
-            <span class="tile-title">Drainage &amp; Earthwork</span>
-            <span class="tile-tag">Integrated Design Project</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Experience -->
-      <div class="paper exp-paper" id="experience">
-        <h2 class="cursive">Experience</h2>
-        <div class="exp-list">
-          <div class="exp-item">
-            <div class="exp-head">
-              <strong>Assistant Engineer (Intern)</strong>
-              <span class="exp-date">Jun – Sep 2025</span>
+        <!-- Experience -->
+        <div class="experience-section" id="experience">
+          <div class="section-title">💼</div>
+          <h2 class="section-subtitle">Experience</h2>
+          <div class="exp-list">
+            <div class="exp-item reveal">
+              <div class="exp-role">Assistant Engineer (Intern)</div>
+              <div class="exp-dates">Jun – Sep 2025</div>
+              <div class="exp-desc">Jurutera JRK Sdn Bhd — AutoCAD drawings, drainage design &amp; calculations, site visits, drawing coordination and documentation.</div>
             </div>
-            <p class="exp-org">Jurutera JRK Sdn Bhd</p>
-            <p class="exp-desc">AutoCAD drawings, drainage design &amp; calculations, site visits, drawing coordination and documentation.</p>
-          </div>
-          <div class="exp-item">
-            <div class="exp-head">
-              <strong>Site Supervisor (Intern)</strong>
-              <span class="exp-date">Aug – Dec 2023</span>
+            <div class="exp-item reveal">
+              <div class="exp-role">Site Supervisor (Intern)</div>
+              <div class="exp-dates">Aug – Dec 2023</div>
+              <div class="exp-desc">Haily Construction Sdn Bhd — Site operations supervision, concrete cube testing, scheduling support, machinery permits and material coordination.</div>
             </div>
-            <p class="exp-org">Haily Construction Sdn Bhd</p>
-            <p class="exp-desc">Site operations supervision, concrete cube testing, scheduling support, machinery permits and material coordination.</p>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Tools -->
-      <div class="paper tools-paper" id="skills">
-        <h2 class="cursive">Tools I use</h2>
-        <div class="tools-grid">
-          <div class="tool-item" data-tooltip="Python · automation & HVSR scripting">
-            <span class="tool-badge">Py</span><span>Python</span>
-          </div>
-          <div class="tool-item" data-tooltip="Drafting & design">
-            <span class="tool-badge">AC</span><span>AutoCAD</span>
-          </div>
-          <div class="tool-item" data-tooltip="Building information modeling">
-            <span class="tool-badge">Rv</span><span>Revit</span>
-          </div>
-          <div class="tool-item" data-tooltip="Water network analysis">
-            <span class="tool-badge">EP</span><span>EPANET</span>
-          </div>
-          <div class="tool-item" data-tooltip="Seismic H/V processing">
-            <span class="tool-badge">Gs</span><span>Geopsy</span>
-          </div>
-          <div class="tool-item" data-tooltip="1D inversion">
-            <span class="tool-badge">Dn</span><span>Dinver</span>
-          </div>
-          <div class="tool-item" data-tooltip="Numerical analysis">
-            <span class="tool-badge">ML</span><span>MATLAB</span>
-          </div>
-          <div class="tool-item" data-tooltip="Microsoft Office suite">
-            <span class="tool-badge">Of</span><span>MS Office</span>
-          </div>
-          <div class="tool-item" data-tooltip="Design & presentation">
-            <span class="tool-badge">Cn</span><span>Canva</span>
-          </div>
-          <div class="tool-item" data-tooltip="Web basics">
-            <span class="tool-badge">‹/›</span><span>HTML/CSS/JS</span>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- ===== TOOLS ROW (outside board) ===== -->
+    <div class="tools-row" id="skills">
+      <div class="tool-badge"><span class="tool-icon" style="background:#3776AB">Py</span><span class="tool-name">Python</span></div>
+      <div class="tool-badge"><span class="tool-icon" style="background:#0696D7">AC</span><span class="tool-name">AutoCAD</span></div>
+      <div class="tool-badge"><span class="tool-icon" style="background:#0696D7">Rv</span><span class="tool-name">Revit</span></div>
+      <div class="tool-badge"><span class="tool-icon" style="background:#4dd9e8">EP</span><span class="tool-name">EPANET</span></div>
+      <div class="tool-badge"><span class="tool-icon" style="background:#6a8c69">Gs</span><span class="tool-name">Geopsy</span></div>
+      <div class="tool-badge"><span class="tool-icon" style="background:#8a6a4f">Dn</span><span class="tool-name">Dinver</span></div>
+      <div class="tool-badge"><span class="tool-icon" style="background:#FF6C2C">ML</span><span class="tool-name">MATLAB</span></div>
+      <div class="tool-badge"><span class="tool-icon" style="background:#D83B01">Of</span><span class="tool-name">MS Office</span></div>
+      <div class="tool-badge"><span class="tool-icon" style="background:#00C4CC">Cn</span><span class="tool-name">Canva</span></div>
+      <div class="tool-badge"><span class="tool-icon" style="background:#e44d26">‹/›</span><span class="tool-name">HTML/CSS/JS</span></div>
+    </div>
   </main>
 
   <!-- ============ EDUCATION ============ -->
@@ -242,7 +195,7 @@
     <div class="container">
       <div class="section-head reveal">
         <span class="section-tag">Education</span>
-        <h2 class="cursive big">Where I studied</h2>
+        <h2>Where I studied</h2>
       </div>
       <div class="timeline">
         <div class="timeline-item reveal">
@@ -253,10 +206,7 @@
               <span class="timeline-date">Oct 2023 – Jul 2026</span>
             </div>
             <p class="timeline-org">Universiti Teknologi Malaysia · Faculty of Civil Engineering</p>
-            <p class="timeline-body">
-              Relevant coursework: Structural Analysis, Reinforced Concrete Design, Hydrology and
-              Surveying, Construction Management.
-            </p>
+            <p class="timeline-body">Relevant coursework: Structural Analysis, Reinforced Concrete Design, Hydrology and Surveying, Construction Management.</p>
             <div class="timeline-tags">
               <span class="chip">CGPA 3.2</span>
               <span class="chip">UTM</span>
@@ -271,10 +221,7 @@
               <span class="timeline-date">Oct 2020 – Dec 2023</span>
             </div>
             <p class="timeline-org">Universiti Tun Hussein Onn Malaysia · Faculty of Civil Technology</p>
-            <p class="timeline-body">
-              Relevant coursework: Engineering Mathematics, Fluid Mechanics, Basic Structural
-              Design, Construction Technology, Surveying.
-            </p>
+            <p class="timeline-body">Relevant coursework: Engineering Mathematics, Fluid Mechanics, Basic Structural Design, Construction Technology, Surveying.</p>
             <div class="timeline-tags">
               <span class="chip">CGPA 3.6</span>
               <span class="chip">MUET Band 4.5</span>
@@ -291,7 +238,7 @@
     <div class="container">
       <div class="section-head reveal">
         <span class="section-tag">Achievements</span>
-        <h2 class="cursive big">Milestones</h2>
+        <h2>Milestones</h2>
       </div>
       <div class="ach-grid">
         <div class="ach-card reveal">
@@ -318,48 +265,39 @@
     </div>
   </section>
 
-  <!-- ============ BLOG TEASER ============ -->
+  <!-- ============ BLOG ============ -->
   <section class="section" id="blog">
     <div class="container">
       <div class="section-head reveal">
         <span class="section-tag">Blog</span>
-        <h2 class="cursive big">Latest from the blog</h2>
+        <h2>Latest from the blog</h2>
         <p class="section-sub">Notes from the field — seismic site characterization, engineering automation, and the tools I build.</p>
       </div>
       <!-- BLOG-TEASER-START -->
-<div class="blog-grid" id="blogTeaser">
+      <div class="blog-grid" id="blogTeaser">
         <article class="blog-card reveal visible">
           <span class="blog-date">13 August 2026</span>
           <h3><a href="blog/posts/building-hvsr-analyzer.html">Building HVSR Analyzer: a zero-dependency desktop app</a></h3>
-          <p>My final year project taught me that the hardest part of seismic site characterization isn't the theory — it's the tooling. Geopsy, EasyHVSR, and Dinver are powerful, but getting a non-expert (or a fresh intern) from raw microtremor recordings to a reliable H/V curve is a steep climb: install Python, install packages, learn the CLI, fight version conflicts.</p>
-          <div class="project-tags"><span class="chip">python</span>
-            <span class="chip">hvsr</span>
-            <span class="chip">desktop</span>
-            <span class="chip">automation</span></div>
+          <p>My final year project taught me that the hardest part of seismic site characterization isn't the theory — it's the tooling.</p>
+          <div class="project-tags"><span class="chip">python</span><span class="chip">hvsr</span><span class="chip">desktop</span><span class="chip">automation</span></div>
           <a class="read-more" href="blog/posts/building-hvsr-analyzer.html">Read post →</a>
         </article>
         <article class="blog-card reveal visible">
           <span class="blog-date">10 August 2026</span>
           <h3><a href="blog/posts/from-field-recordings-to-soil-model.html">From field recordings to a soil model: my microzonation FYP journey</a></h3>
-          <p>For my final year project I worked on seismic microzonation mapping — the process of dividing a region into zones that respond differently to earthquake ground motion, based on local soil conditions. (The project location is omitted here in compliance with a Non-Disclosure Agreement.)</p>
-          <div class="project-tags"><span class="chip">fyp</span>
-            <span class="chip">microzonation</span>
-            <span class="chip">hvsr</span>
-            <span class="chip">research</span></div>
+          <p>For my final year project I worked on seismic microzonation mapping — the process of dividing a region into zones based on local soil conditions.</p>
+          <div class="project-tags"><span class="chip">fyp</span><span class="chip">microzonation</span><span class="chip">hvsr</span><span class="chip">research</span></div>
           <a class="read-more" href="blog/posts/from-field-recordings-to-soil-model.html">Read post →</a>
         </article>
         <article class="blog-card reveal visible">
           <span class="blog-date">8 August 2026</span>
           <h3><a href="blog/posts/two-internships-two-sides-of-construction.html">Two internships, two very different sides of construction</a></h3>
-          <p>Before I finished my degree, I did two internships that could not have been more different — and together they taught me more about how the industry actually works than any classroom ever could.</p>
-          <div class="project-tags"><span class="chip">internship</span>
-            <span class="chip">construction</span>
-            <span class="chip">autocad</span>
-            <span class="chip">site-work</span></div>
+          <p>Before I finished my degree, I did two internships that could not have been more different.</p>
+          <div class="project-tags"><span class="chip">internship</span><span class="chip">construction</span><span class="chip">autocad</span><span class="chip">site-work</span></div>
           <a class="read-more" href="blog/posts/two-internships-two-sides-of-construction.html">Read post →</a>
         </article>
       </div>
-<!-- BLOG-TEASER-END -->
+      <!-- BLOG-TEASER-END -->
       <div class="teaser-more reveal">
         <a href="blog/index.html" class="btn btn-ghost">Read all posts →</a>
       </div>
@@ -371,28 +309,28 @@
     <div class="container">
       <div class="section-head reveal">
         <span class="section-tag">Contact</span>
-        <h2 class="cursive big">Let's work together</h2>
+        <h2>Let's work together</h2>
         <p class="section-sub">Have a project, internship, or collaboration in mind? My inbox is always open.</p>
       </div>
       <div class="contact-grid">
-        <div class="contact-info reveal">
-          <a href="mailto:nazreennasyuha@gmail.com" class="contact-row">
+        <div class="contact-info">
+          <a href="mailto:nazreennasyuha@gmail.com" class="contact-row reveal">
             <span class="contact-icon">✉️</span>
             <span><strong>Email</strong><br />nazreennasyuha@gmail.com</span>
           </a>
-          <a href="tel:+60187771460" class="contact-row">
+          <a href="tel:+60187771460" class="contact-row reveal">
             <span class="contact-icon">📞</span>
             <span><strong>Phone</strong><br />+60 18-777 1460</span>
           </a>
-          <a href="https://www.linkedin.com/in/nazreenrazmi/" target="_blank" rel="noopener" class="contact-row">
+          <a href="https://www.linkedin.com/in/nazreenrazmi/" target="_blank" rel="noopener" class="contact-row reveal">
             <span class="contact-icon">💼</span>
             <span><strong>LinkedIn</strong><br />Nazreen Razmi</span>
           </a>
-          <a href="https://github.com/NazreenNasyuha" target="_blank" rel="noopener" class="contact-row">
+          <a href="https://github.com/NazreenNasyuha" target="_blank" rel="noopener" class="contact-row reveal">
             <span class="contact-icon">🐙</span>
             <span><strong>GitHub</strong><br />NazreenNasyuha</span>
           </a>
-          <div class="contact-row">
+          <div class="contact-row reveal">
             <span class="contact-icon">📍</span>
             <span><strong>Location</strong><br />Kulai, Johor, Malaysia</span>
           </div>
@@ -414,7 +352,7 @@
           </div>
           <div class="form-field">
             <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+            <textarea id="message" name="message" rows="4" placeholder="Tell me about your project..." required></textarea>
           </div>
           <button type="submit" class="btn btn-primary btn-block">Send Message</button>
           <p class="form-note" id="formNote"></p>
@@ -429,7 +367,6 @@
       <p>© <span id="year"></span> Muhammad Nazreen Nasyuha bin Razmi. Built with ❤️ and a lot of Python.</p>
       <div class="mc-area" title="Click the block...">
         <button class="minecraft-block" id="mcBlock" aria-label="Interactive block — click it!">
-          <!-- pixel-art dirt block (Minecraft-style) -->
           <svg viewBox="0 0 16 16" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
             <rect width="16" height="16" fill="#8b5a2b"/>
             <rect x="1" y="1" width="3" height="3" fill="#a06a35"/>
@@ -457,7 +394,7 @@
         <a href="https://www.linkedin.com/in/nazreenrazmi/" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://github.com/NazreenNasyuha" target="_blank" rel="noopener">GitHub</a>
         <a href="blog/index.html">Blog</a>
-        <a href="#home">Back to top ↑</a>
+        <a href="#">Back to top ↑</a>
       </div>
     </div>
   </footer>
@@ -478,6 +415,7 @@
   <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
 
   <div class="game-toast" id="gameToast" role="status" aria-live="polite"></div>
+  <div class="copy-toast" id="copyToast" role="status" aria-live="polite">Copied!</div>
 
   <div class="achievement-popup" id="achPopup" role="status" aria-live="polite">
     <span class="ach-ico">🏆</span>
