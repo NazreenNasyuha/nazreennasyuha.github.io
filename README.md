@@ -323,6 +323,14 @@ i combine a solid foundation in **infrastructure design** and **structural coord
 ```
     ::everything is going to be okay.::
 
+⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣘⠒⠀⠀⠀⢀⣤⢦⠀⠀⠀⢀⣤⠀⠀
+⠀⠀⠀⠋⠰⠆⠀⣰⡟⠁⢈⣧⣀⣴⠋⠙⡄⠀
+⠀⠀⠀⠀⢀⣴⣿⣿⣤⣴⣿⣿⣿⣿⣷⣤⣇⠀
+⠀⣀⣠⣀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄
+⣿⣿⣿⣿⣿⣿⣿⣿⣧⣤⣤⣼⣿⣧⣤⣤⣿⠃
+⠉⠁⠀⠀⠈⠙⠻⠿⢿⣿⣿⣿⣿⣿⠿⠿⠛⠀
+
 ```
 
 ![Visitors](https://komarev.com/ghpvc/?username=NazreenNasyuha&color=9370DB&style=for-the-badge&label=PROFILE+VISITORS)
